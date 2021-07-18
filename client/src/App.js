@@ -8,11 +8,10 @@ const App = () => {
         </div>
     );
 }
-
 export default App;
 */
 
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
 
 const mapStyles = {
     width: '100%',
@@ -23,16 +22,29 @@ export class MapContainer extends React.Component {
     render() {
         return (
             <Map
-            google = {this.props.google}
-            zoom = {14}
-            style = {mapStyles}
-            initialCenter = {
-                {
-                lat: 73.6789,
-                lng: 42.7298
+                google = {this.props.google}
+                zoom = {14}
+                style = {mapStyles}
+                initialCenter = {
+                    {
+                        lat: 42.7298,
+                        lng: 73.6789
+                    }
                 }
-            }
+            >
+            <Marker key="marker_1"
+                icon={{
+                    url: 'https://upload.wikimedia.org/wikipedia/commons/1/1e/Buoy.svg',
+                    anchor: new this.props.google.maps.Point(32,32),
+                    scaledSize: new this.props.google.maps.Size(32,32)
+                }}
+
+                position={{
+                    lat: 42.7298,
+                    lng: 73.6789
+                }}
             />
+            </Map>
         );
     }
 }
