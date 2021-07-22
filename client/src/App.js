@@ -6,7 +6,12 @@ import Landing from './pages/Landing';
 
 import './styles/main.scss';
 
-const App = () => {
+export default class App extends React.Component {
+    state = {
+        title: ""
+    }
+
+    render(){
     return (
         <BrowserRouter>
             <Header/>
@@ -17,5 +22,5 @@ const App = () => {
             </Switch>
         </BrowserRouter>
     );
+    }
 }
-export default App;
