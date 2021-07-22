@@ -1,0 +1,23 @@
+// import global variables
+@import '../../styles/variables';
+
+.header {
+    background: #438AA9;
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 1rem;
+}
+
+.nav-logo {
+    color: var(--light-text);
+}
+
+.nav-link {
+    color: var(--light-text);
+    margin-right: 1rem;
+}
