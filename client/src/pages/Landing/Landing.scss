@@ -1,0 +1,14 @@
+.wrapper {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+}
+
+.map-left {
+    grid-column: 1;
+}
+
+.map-right {
+    grid-column: 2/5;
+}
