@@ -1,17 +1,48 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
-/*
-const App = () => {
+
+
+import { useDispatch } from 'react-redux';
+import { getEvents } from './actions/events';
+
+import Events from './components/Events/Events';
+import Form from './components/Form/Form';
+import WHATSTHEWAVE from './images/WHATSTHEWAVE.png'
+
+
+
+const App = () => {  
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getEvents);
+    }, [dispatch]);
     return (
-        <div>
-            <h1>App</h1>
-        </div>
+        <Container maxWidth="lg">
+            <AppBar position="static" color="inherit">
+                <Typography variant="h2" align="center">Whats the Wave</Typography>
+                <img src={WHATSTHEWAVE} alt="WHATSTHEWAVE" height="240"/>
+            </AppBar>
+            <Grow in>
+                <Container>
+                    <Grid cotainer justify="space-between" alignItems="stretch" spacing={3}> 
+                        <Grid item xs={12} sm={7}>
+                            <Events />
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <Form />
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Grow>
+        </Container>
     );
 }
 export default App;
-*/
+
 
 /*
 import {Map, GoogleApiWrapper, Marker} from 'google-maps-react';
@@ -54,8 +85,9 @@ export class MapContainer extends React.Component {
     }
 }
 */
-
+/*
 export class MapContainer extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = { 
@@ -158,3 +190,4 @@ export class MapContainer extends React.Component {
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyDdIBVvzNbyOpiU1qvyJiWbAW6CFm1KoQs'
 })(MapContainer);
+*/

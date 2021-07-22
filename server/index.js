@@ -7,11 +7,12 @@ import eventRoutes from './routes/events.js';
 
 const app = express();
 
-app.use('/events', eventRoutes);
 
 app.use(bodyParser.json({ limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
 app.use(cors());
+
+app.use('/events', eventRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://whatsthewave-user:whatsthewave@cluster0.ayb4p.mongodb.net/whatsthewave?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
