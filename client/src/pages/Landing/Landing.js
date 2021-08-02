@@ -3,8 +3,11 @@ import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { saveEventData } from '../../actions';
 import axios from 'axios';
+//import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+//import eventdata from '../events.json';
 
 import './Landing.scss';
+
 
 const containerStyle = {
     position: 'relative',  
@@ -90,7 +93,7 @@ export class MapContainer extends React.Component {
                         onChange = {this.handleChange}
                         onSelect = {this.handleSelect}
                     >
-                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
                             <input
                             {...getInputProps({
@@ -126,28 +129,31 @@ export class MapContainer extends React.Component {
                 </div>
 
                 <div class='map-right'>
-                    <Map containerStyle={containerStyle}
+                    <Map containerStyle = {containerStyle}
                         google = {this.props.google}
                         initialCenter = {{
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
                         }}
-
                         center = {{
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
-                        }}
-            >
-                        <Marker
-                            position = {{
-                                lat: this.state.mapCenter.lat,
-                                lng: this.state.mapCenter.lng
-                            }}
-                        />
+                        }}>
+                            {eventdata.map( (eventDetail, index) => {
+                                return (
+                                    <Marker
+                                        position = {{
+                                            lat: eventDetail.lat,
+                                            lng: eventDetail.lng
+                                        }}
+                                        key = {eventDetail.lat}
+                                    />
+                                )
+                            })}
                     </Map>
                 </div>
             </div>
-      )
+        )
     }
 }
 
