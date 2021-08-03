@@ -1,6 +1,8 @@
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { saveEventData } from '../../actions';
+import axios from 'axios';
 
 import './Landing.scss';
 
@@ -11,6 +13,27 @@ const containerStyle = {
 }
 
 export class MapContainer extends React.Component {
+    
+    componentDidMount() {
+        this.refreshSavedEvents();
+        console.log("Yes"); 
+       }
+
+    refreshSavedEvents = () => {
+        axios.get("/getEvents")
+        .then(res => {
+            console.log(res.data);
+            /*
+            localStorage.setItem("AllEvents", res.data);
+            this.props.saveEventData(res.data);
+            console.log(localStorage.getItem("AllEvents"));
+            */
+        });
+    }
+    
+   
+
+
     constructor(props) {
         super(props);
         this.state = { 
