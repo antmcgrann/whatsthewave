@@ -16,23 +16,43 @@ export class MapContainer extends React.Component {
     
     componentDidMount() {
         this.refreshSavedEvents();
-        console.log("Yes"); 
        }
 
+    //Upon component remounting, recieve all events from backend
     refreshSavedEvents = () => {
         axios.get("/getEvents")
         .then(res => {
             console.log(res.data);
-            /*
-            localStorage.setItem("AllEvents", res.data);
-            this.props.saveEventData(res.data);
-            console.log(localStorage.getItem("AllEvents"));
-            */
+            localStorage.clear();
+            //Save to local storage, res.data is array of event json objects
+            //Stored in key-value pair
+            //Need to have id_key made in backend
+            let locAmt = res.data.length;
+            let countAmt = 0;
+            let idArray = [];
+            res.data.forEach(element => {
+                console.log(element.key);
+                idArray.push(element._id);
+                console.log(idArray);
+                let tempObj = {
+                    key: element.key,
+                    title: element.title,
+                    lat: element.lat,
+                    long: element.long,
+                    desc: element.desc,
+                    creator: element.creator,
+                    tags: element.tags,
+                    rsvp: element.rsvp,
+                    date: element.date
+                }
+                localStorage.setItem(element.key, tempObj);
+                console.log(tempObj);
+                console.log(localStorage);
+                
+            });
         });
     }
     
-   
-
 
     constructor(props) {
         super(props);
