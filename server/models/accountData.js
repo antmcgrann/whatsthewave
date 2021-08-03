@@ -47,12 +47,33 @@ const account2 = new AccountData({username: 'wtwAdmin', password: 'password', bi
         title: 'SDD party',
         lat: 42.7248,
         lng: -73.6918,
-        desc: 'End of the semester party! Celebrate with cake!',
+        desc: 'End of the project party! Celebrate with cake!',
         creator: 'wtwAdmin',
         tags: ['Get-together', 'Food'],
         rsvp: ['AndrewW27', 'AnthonyM30', 'AudreyS2', 'WillW20', 'JustinK45'],
+        date: '2021-08-09'
+    }], 
+    eventsRSVP: [ {
+        title: 'SDD party part 2',
+        lat: 42.7248,
+        lng: -73.6918,
+        desc: 'End of the class party!',
+        creator: 'wtwAdmin',
+        tags: ['Get-together', 'Food'],
+        rsvp: ['JohnS1', 'AudreyS2', 'JustinK45'],
         date: '2021-08-20'
-    }], eventsRSVP: ['SDD party part 2'], eventsAttended: ['SDD Lecture', 'SDD party'] });
+    }], 
+    eventsAttended: [ {
+        title: 'SDD Lecture',
+        lat: 42.7248,
+        lng: -73.6918,
+        desc: 'Weekly SDD lecture hosted by Professor Sturman',
+        creator: 'JohnS1',
+        tags: ['Education'],
+        rsvp: ['AudreyS2', 'JustinK45', 'WillW20', 'AnthonyM30', 'AndrewW27'],
+        date: '2021-08-02'
+    } ]
+});
 
 account1.save(function (err) {
     if (err) return handleError(err); 
