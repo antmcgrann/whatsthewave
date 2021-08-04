@@ -13,6 +13,4 @@ export const getEvents = () => async (dispatch) => {
 		console.log(error.message);
 
 	}
-	const action = { type: 'FETCH_ALL', payload: []}
-	dispatch(action);
 }

@@ -11,10 +11,14 @@ import EventCard from './components/EventCard';
 import './styles/main.scss';
 
 export default class App extends React.Component {
+
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getEvents());
     }, [dispatch]);
+
+
     state = {
         title: ""
     }
