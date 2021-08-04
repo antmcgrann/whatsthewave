@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {useDispatch} from 'react-redux';
 
-import {getEvents} from './actions/events';
+import {getEvents} from './Actions/events';
 
 import Header from './components/Header/Header';
 import Landing from './pages/Landing/Landing';
@@ -12,18 +12,16 @@ import './styles/main.scss';
 
 export default class App extends React.Component {
 
-    const dispatch = useDispatch();
+    state = {
+        title: ""
+    }
+    render(){
 
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getEvents());
     }, [dispatch]);
 
-
-    state = {
-        title: ""
-    }
-
-    render(){
     return (
         <BrowserRouter>
             <Header/>
@@ -36,5 +34,6 @@ export default class App extends React.Component {
             </Switch>
         </BrowserRouter>
     );
+
     }
 }

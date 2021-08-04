@@ -1,4 +1,4 @@
 import {combineReducers} from 'redux';
 import events from './events';
 
-export default combineReducers({ events });
+export const reducers = combineReducers({ events });

@@ -5,7 +5,7 @@ import * as API from '../API';
 export const getEvents = () => async (dispatch) => {
 
 	try{
-		const {data} = await API.fetchEvents();
+		const {data} = await API.fetchevents();
 		dispatch( {type: 'FETCH_ALL', payload: data});
 
 	}
