@@ -27,28 +27,23 @@ export class MapContainer extends React.Component {
             //Save to local storage, res.data is array of event json objects
             //Stored in key-value pair
             //Need to have id_key made in backend
-            let locAmt = res.data.length;
-            let countAmt = 0;
-            let idArray = [];
             res.data.forEach(element => {
-                console.log(element.key);
-                idArray.push(element._id);
-                console.log(idArray);
                 let tempObj = {
-                    key: element.key,
-                    title: element.title,
-                    lat: element.lat,
-                    long: element.long,
-                    desc: element.desc,
-                    creator: element.creator,
-                    tags: element.tags,
-                    rsvp: element.rsvp,
-                    date: element.date
+                    key: parseInt(element.key),
+                    title: String(element.title),
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.long),
+                    desc: String(element.desc),
+                    creator: String(element.creator),
+                    tags: [element.tags],
+                    rsvp: [element.rsvp],
+                    date: Date(element.date)
                 }
-                localStorage.setItem(element.key, tempObj);
                 console.log(tempObj);
-                console.log(localStorage);
-                
+                localStorage.setItem(element.key, tempObj);
+                console.log(element);
+                console.log(localStorage.length);
+                console.log("uhh "+ (localStorage.getItem(element.key)['title']));
             });
         });
     }
