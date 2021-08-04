@@ -1,7 +1,7 @@
 import React from "react";
-import eventdata from '../events.json';
+import eventdata from 'whatsthewave/server/events.json';
 
-const EventCard() = () =>{
+const EventCard = () =>{
 	return(
 		<>
 			<div ClassName = "eventdata">
