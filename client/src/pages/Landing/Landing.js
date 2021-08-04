@@ -40,10 +40,11 @@ export class MapContainer extends React.Component {
                     date: Date(element.date)
                 }
                 console.log(tempObj);
-                localStorage.setItem(element.key, tempObj);
+                localStorage.setItem(element.key, JSON.stringify(tempObj));
                 console.log(element);
                 console.log(localStorage.length);
-                console.log("uhh "+ (localStorage.getItem(element.key)['title']));
+                //Successful read and writes to localstorage
+                console.log(JSON.parse(localStorage.getItem(element.key))['title']);
             });
         });
     }
