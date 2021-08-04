@@ -1,7 +1,10 @@
 import React from "react";
-import eventdata from 'whatsthewave/server/events.json';
+import { useSelector } from 'react-redux';
 
 const EventCard = () =>{
+	const events = useSelector((state) => state.events);
+
+	console.log(events);
 	return(
 		<>
 			<div ClassName = "eventdata">
