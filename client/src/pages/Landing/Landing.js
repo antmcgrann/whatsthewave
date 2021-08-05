@@ -2,6 +2,10 @@ import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
+import { useSelector } from 'react-redux';
+import { Grid, CircularProgress } from '@material-ui/core';
+import Event from './EventCard';
+
 import './Landing.scss';
 
 const containerStyle = {
@@ -10,7 +14,9 @@ const containerStyle = {
     height: '100%'
 }
 
+
 export class MapContainer extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = { 
@@ -84,6 +90,17 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    const events = useSelector((state) => state.events);
+
+                    !post.length? <CircularProgress /> :(
+                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
+                            {events.map((event) =>(
+                                <Grid key={event._id} item xs={12} sm={6} md={6}>
+                                    <Event event={event} setCurrentId={setCurrentId} />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    )
                 </div>
 
                 <div class='map-right'>

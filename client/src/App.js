@@ -28,7 +28,6 @@ export default class App extends React.Component {
             <Switch>
                 <Route exact path="/">
                     <Landing />
-                    <EventCard />
 
                 </Route>
             </Switch>

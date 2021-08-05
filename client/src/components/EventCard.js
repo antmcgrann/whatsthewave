@@ -1,25 +1,25 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { Card, CardActions, CardContent, Typography } from '@material-ui/core/';
+import { useDispatch } from 'react-redux';
 
-const EventCard = () =>{
-	const events = useSelector((state) => state.events);
 
-	console.log(events);
-	return(
-		<>
-			<div ClassName = "eventdata">
-				{events.map((data, key) =>{
-					return(
-						<div key={key}>
-							{data.title + ":" + data.tags}
-							{data.creator}
-							{data.date}
-						</div>
-					);
-				})}
-			</div>
-		</>
-	);
+const Event = ({ event, setCurrentId }) => {
+  const dispatch = useDispatch();
+
+  return (
+    <Card className={classes.card}>
+      <div className={classes.overlay}>
+        <Typography>{events.creator}</Typography>
+      </div>
+      <div className={classes.details}>
+        <Typography> {events.tags.map((tag) => `#${tag} `)}</Typography>
+      </div>
+      <Typography> {events.title}</Typography>
+      <CardContent>
+        <Typography> {events.desc} </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
-export default EventCard;
+export default Event;
