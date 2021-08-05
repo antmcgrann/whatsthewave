@@ -8,7 +8,7 @@ const EventCard = () =>{
 	return(
 		<>
 			<div ClassName = "eventdata">
-				{event.data.map((data, key) =>{
+				{events.map((data, key) =>{
 					return(
 						<div key={key}>
 							{data.title + ":" + data.tags}
