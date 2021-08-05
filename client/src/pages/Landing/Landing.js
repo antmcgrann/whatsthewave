@@ -152,7 +152,7 @@ export class MapContainer extends React.Component {
                                             lat: eventDetail.lat,
                                             lng: eventDetail.lng
                                         }}
-                                        key = {eventDetail.lat}
+                                        key = {eventDetail.key}
                                     />
                                 )
                             })}
