@@ -19,10 +19,11 @@ export const getEvents = async (  req, res  ) => {
 }
 
 export const createEvent = async (req, res) => {
-    const event = req.body;
-
+    let event = JSON(req);
+    if(!(EventData.findOne(event.key) === null)){
+      res.status(202).json({message: "Event exists in database"});
+    }
     const newEvent = new EventData(event);
-
     try  {
       await newEvent.save();
       res.status(201).json(newEvent);

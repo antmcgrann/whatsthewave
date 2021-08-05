@@ -1,5 +1,5 @@
 import React from 'react';
-import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { saveEventData } from '../../actions';
 import axios from 'axios';
@@ -14,6 +14,12 @@ const containerStyle = {
     width: '100%',
     height: '100%'
 }
+
+const eventDivStyle = {
+    background: `white`,
+    border: `1px solid #ccc`,
+    padding: 15
+  }
 
 export class MapContainer extends React.Component {
     
@@ -147,13 +153,26 @@ export class MapContainer extends React.Component {
                         }}>
                             {this.state.eventList.map( (eventDetail, index) => {
                                 return (
+                                    <InfoWindow
+                                        // This allows for pop up window instead of marker
+                                        // But its not working
+                                        position={{
+                                            lat: eventDetail.lat,
+                                            lng: eventDetail.lng
+                                        }}
+                                        >
+                                        <div style={eventDivStyle}>
+                                            <h1>eventDetail.title</h1>
+                                        </div>
+                                    </InfoWindow>
+                                    /*
                                     <Marker
                                         position = {{
                                             lat: eventDetail.lat,
                                             lng: eventDetail.lng
                                         }}
                                         key = {eventDetail.key}
-                                    />
+                                    /> */
                                 )
                             })}
                     </Map>
