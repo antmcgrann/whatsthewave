@@ -8,6 +8,7 @@ export class EventForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            key: Number,
             eventTitle: '',
             categoryTags: [],
             location: '',
@@ -27,6 +28,7 @@ export class EventForm extends React.Component {
 
 
     handleSubmit = (newEvent) => {
+      // Generate a key for the event and add
       axios.post("/createEvent", JSON(this.state))
         .then(response => console.log(response));
     }

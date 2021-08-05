@@ -32,3 +32,12 @@ export const createEvent = async (req, res) => {
     }
 
 }
+
+export const getOneEvent = async (req,res) => {
+
+
+}
+
+export const editEdit = async (req,res) => {
+  
+}
