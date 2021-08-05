@@ -1,7 +1,10 @@
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import eventdata from '../events.json';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { saveEventData } from '../../actions';
+import axios from 'axios';
+//import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+//import eventdata from '../events.json';
 
 import './Landing.scss';
 
@@ -13,6 +16,7 @@ const containerStyle = {
 }
 
 export class MapContainer extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = { 
@@ -20,13 +24,55 @@ export class MapContainer extends React.Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-
+            eventList: [{}],
             mapCenter: {
                 lat: 42.7248,
                 lng: -73.6918
             }
         };
     }
+
+    componentDidMount() {
+        this.refreshSavedEvents();
+       }
+
+    //Upon component remounting, recieve all events from backend
+    refreshSavedEvents = () => {
+        axios.get("/getEvents")
+        .then(res => {
+            console.log(res.data);
+            localStorage.clear();
+            //Save to local storage, res.data is array of event json objects
+            //Stored in key-value pair
+            //Need to have id_key made in backend
+            let tempArr = [{}];
+            res.data.forEach(element => {
+                let tempObj = {
+                    key: parseInt(element.key),
+                    title: String(element.title),
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.long),
+                    desc: String(element.desc),
+                    creator: String(element.creator),
+                    tags: [element.tags],
+                    rsvp: [element.rsvp],
+                    date: Date(element.date)
+                }
+                console.log(tempObj);
+                localStorage.setItem(element.key, JSON.stringify(tempObj));
+                tempArr.push(tempObj);
+                console.log(element);
+                console.log(localStorage.length);
+                //Successful read and writes to localstorage
+                console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+            });
+            console.log(tempArr);
+            this.setState({eventList: tempArr});
+        });
+    }
+    
+
+
 
    
     handleChange = address => {
@@ -99,14 +145,14 @@ export class MapContainer extends React.Component {
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
                         }}>
-                            {eventdata.map( (eventDetail, index) => {
+                            {this.state.eventList.map( (eventDetail, index) => {
                                 return (
                                     <Marker
                                         position = {{
                                             lat: eventDetail.lat,
                                             lng: eventDetail.lng
                                         }}
-                                        key = {eventDetail.lat}
+                                        key = {eventDetail.key}
                                     />
                                 )
                             })}
