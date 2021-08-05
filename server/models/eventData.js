@@ -22,7 +22,11 @@ const EventData = mongoose.model('EventData', eventSchema);
 const event1 = new EventData({key: 11111 , title: 'SDD Party', lat: '42.73029109316892', 
 long: '-73.67987394332887', desc: 'abc', creator: 'me', tags: ['outdoor','food'], 
     rsvp: ['will', 'andrew', 'audrey', 'anthony', 'justin'], date: '2021-07-20' });
+const event2 = new EventData({key: 22222 , title: 'Albany', lat: '42.6526', 
+    long: '-73.7562', desc: 'abc', creator: 'me', tags: ['outdoor','food'], 
+        rsvp: ['will', 'andrew', 'audrey', 'anthony', 'justin'], date: '2021-07-20' });
 // Must save it to db
+event2.save();
 event1.save(function (err) {
     if (err) return handleError(err);
     // saved!

@@ -17,6 +17,21 @@ const containerStyle = {
 
 export class MapContainer extends React.Component {
     
+    constructor(props) {
+        super(props);
+        this.state = { 
+            address: '', 
+            showingInfoWindow: false,
+            activeMarker: {},
+            selectedPlace: {},
+            eventList: [{}],
+            mapCenter: {
+                lat: 42.7248,
+                lng: -73.6918
+            }
+        };
+    }
+
     componentDidMount() {
         this.refreshSavedEvents();
        }
@@ -30,6 +45,7 @@ export class MapContainer extends React.Component {
             //Save to local storage, res.data is array of event json objects
             //Stored in key-value pair
             //Need to have id_key made in backend
+            let tempArr = [{}];
             res.data.forEach(element => {
                 let tempObj = {
                     key: parseInt(element.key),
@@ -44,29 +60,19 @@ export class MapContainer extends React.Component {
                 }
                 console.log(tempObj);
                 localStorage.setItem(element.key, JSON.stringify(tempObj));
+                tempArr.push(tempObj);
                 console.log(element);
                 console.log(localStorage.length);
                 //Successful read and writes to localstorage
                 console.log(JSON.parse(localStorage.getItem(element.key))['title']);
             });
+            console.log(tempArr);
+            this.setState({eventList: tempArr});
         });
     }
     
 
-    constructor(props) {
-        super(props);
-        this.state = { 
-            address: '', 
-            showingInfoWindow: false,
-            activeMarker: {},
-            selectedPlace: {},
 
-            mapCenter: {
-                lat: 42.7248,
-                lng: -73.6918
-            }
-        };
-    }
 
    
     handleChange = address => {
@@ -139,7 +145,7 @@ export class MapContainer extends React.Component {
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
                         }}>
-                            {eventdata.map( (eventDetail, index) => {
+                            {this.state.eventList.map( (eventDetail, index) => {
                                 return (
                                     <Marker
                                         position = {{
