@@ -133,9 +133,9 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    for( let [key, value] of this.state.eventList){
-                        eventcard(value.title, value.tags, value.desc, value.time, value.date, '', value.creator)
-                    }
+                   this.state.eventList.map( (key, value) => {
+                         eventcard(key.title, key.tags, key.desc, key.time, key.date, '', key.creator)
+                    })
 
                 </div>
 
