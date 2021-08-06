@@ -57,7 +57,7 @@ export class EventForm extends React.Component {
       let eventDataPkg = {
         title: data.target.title.value,
         creator: data.target.creator.value,
-        tags: data.target.categoryTags.value,
+        tags: data.target.categoryTags.value.split(" "),
         locationField: data.target.locationField.value,
         capacityfield: data.target.capacityField.value,
         dateField: data.target.dateField.value,
@@ -69,9 +69,6 @@ export class EventForm extends React.Component {
       await axios.post('/createEvent', eventDataPkg)
         .then(response => console.log(response));
     }
-
-    
-    
 
     render() {
       // Need UI
