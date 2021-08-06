@@ -7,6 +7,7 @@ import axios from 'axios';
 //import eventdata from '../events.json';
 import EventFilterSearch from './EventFilterSearch'
 import './Landing.scss';
+import tagsdata from '../tags.json';
 
 
 const containerStyle = {
@@ -37,7 +38,7 @@ export class MapContainer extends React.Component {
     }
 
     //Upon component remounting, recieve all events from backend
-    refreshSavedEvents = () => {
+    refreshSavedEvents = (event) => {
         axios.get("/getEvents")
         .then(res => {
             console.log(res.data);
@@ -58,6 +59,18 @@ export class MapContainer extends React.Component {
                     rsvp: [element.rsvp],
                     date: Date(element.date)
                 }
+                tempObj.tags.forEach(element2=> {
+                    if(typeof event.target.value == 'undefined' || event.target.value === element2) {
+                        console.log(tempObj);
+                        localStorage.setItem(element.key, JSON.stringify(tempObj));
+                        tempArr.push(tempObj);
+                        console.log(element);
+                        console.log(localStorage.length);
+                        //Successful read and writes to localstorage
+                        console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+                    }
+                });
+                /*
                 console.log(tempObj);
                 localStorage.setItem(element.key, JSON.stringify(tempObj));
                 tempArr.push(tempObj);
@@ -65,6 +78,7 @@ export class MapContainer extends React.Component {
                 console.log(localStorage.length);
                 //Successful read and writes to localstorage
                 console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+                */
             });
             console.log(tempArr);
             this.setState({eventList: tempArr});
@@ -132,7 +146,11 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    <EventFilterSearch data = {this.state.eventList}/>
+                    <div class = "Search">
+                        <div class = "Search-inputs">
+                            <input type = "text" placeholder = "Search for event tags" onChange = {this.refreshSavedEvents}/>
+                        </div>
+                    </div>
                 </div>
 
                 <div class = 'map-right'>
