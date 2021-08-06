@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import useStyles from './styles';
 
-const Event = ({ event, setCurrentId }) => {
+const Event = ({ events, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 

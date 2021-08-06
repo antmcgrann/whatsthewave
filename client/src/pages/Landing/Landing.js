@@ -137,13 +137,12 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    const events = useSelector((state) => state.events);
 
-                    !post.length? <CircularProgress /> :(
+                    !this.state.events.length? <CircularProgress /> :(
                         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                            {events.map((event) =>(
+                            {this.eventList.map((event) =>(
                                 <Grid key={event._id} item xs={12} sm={6} md={6}>
-                                    <Event event={event} setCurrentId={setCurrentId} />
+                                    <Event event={event} setCurrentId={event._id} />
                                 </Grid>
                             ))}
                         </Grid>

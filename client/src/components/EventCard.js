@@ -3,7 +3,7 @@ import { Card, CardActions, CardContent, Typography } from '@material-ui/core/';
 import { useDispatch } from 'react-redux';
 
 
-const Event = ({ event, setCurrentId }) => {
+const Event = ({ events, setCurrentId }) => {
   const dispatch = useDispatch();
 
   return (
