@@ -1,10 +1,10 @@
 import express from 'express'
 import { getAccounts, createAccount, getOneAccount, logInAccount } from '../controllers/account.js'
-const router = express.Router()
+const accountRoutes = express.Router()
 
-router.get('/getAccounts', getAccounts);
-router.post('/createAccount', createAccount);
-router.get('/getOneAccount', getOneAccount);
-router.get('/logInAccount', logInAccount);
+accountRoutes.get('/getAccounts', getAccounts);
+accountRoutes.post('/createAccount', createAccount);
+accountRoutes.get('/getOneAccount', getOneAccount);
+accountRoutes.get('/logInAccount', logInAccount);
 
-export default router;
+export default accountRoutes;

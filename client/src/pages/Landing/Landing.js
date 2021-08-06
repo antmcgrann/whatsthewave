@@ -43,8 +43,8 @@ export class MapContainer extends React.Component {
        }
 
     //Upon component remounting, recieve all events from backend
-    refreshSavedEvents = () => {
-        axios.get("/getEvents")
+    refreshSavedEvents = async () => {
+        await axios.get("/getEvents")
         .then(res => {
             console.log(res.data);
             localStorage.clear();
