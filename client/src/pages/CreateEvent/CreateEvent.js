@@ -9,19 +9,20 @@ export class EventForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            key: Number,
             title: '',
             tags: [],
-            lat: Number,
-            lng: Number,
             creator: '',
             locationField: '',
             capacityfield: '',
             dateField: '',
             timeField: '',
             descField: '',
-            contactInfoField: ''
+            contactInfoField: '',
+            lat: Number,
+            lng: Number,
+            key: Number
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     eventUniqueness = async ({ eventObj }) => {
@@ -49,17 +50,23 @@ export class EventForm extends React.Component {
 
 
 
-    handleSubmit = async (newEvent) => {
+    handleSubmit = async data => {
       // Generate a key for the event and add
-      newEvent.preventDefault();
-      //let uniqueRes = eventUniqueness(newEvent);
-      /*
-      if(!(uniqueRes.unique)){
-        return uniqueRes;
+      data.preventDefault();
+      //Prob want to check each field for validity
+      let eventDataPkg = {
+        title: data.target.title.value,
+        creator: data.target.creator.value,
+        tags: data.target.categoryTags.value,
+        locationField: data.target.locationField.value,
+        capacityfield: data.target.capacityField.value,
+        dateField: data.target.dateField.value,
+        timeField: data.target.timeField.value,
+        descField: data.target.descField.value,
+        contactInfoField: data.target.contactInfoField.value
       }
-      */
-      let msg = this.state.json;
-      await axios.post('/createEvent', msg)
+      //Need uniqueness check
+      await axios.post('/createEvent', eventDataPkg)
         .then(response => console.log(response));
     }
 
@@ -75,55 +82,55 @@ export class EventForm extends React.Component {
           <p>Enter event title: </p>
           <input
             type='text'
-            name='title'
+            id='title'
             onChange={this.handleChange}
           />
           <p>Description: </p>
           <input
             type='text'
-            name='desc'
+            id='descField'
             onChange={this.handleChange}
           />
           <p>Enter tags: </p>
           <input
             type='text'
-            name='categoryTags'
+            id='categoryTags'
             onChange={this.handleChange}
           />
           <p>Enter Location: </p>
           <input
             type='text'
-            name='locationField'
+            id='locationField'
             onChange={this.handleChange}
           />
           <p>Enter capacity: </p>
           <input
             type='text'
-            name='capacityField'
+            id='capacityField'
             onChange={this.handleChange}
           />
           <p>Enter date: </p>
           <input
             type='text'
-            name='dateField'
+            id='dateField'
             onChange={this.handleChange}
           />
           <p>Enter time: </p>
           <input
             type='text'
-            name='timeField'
+            id='timeField'
             onChange={this.handleChange}
           />
           <p>Creator name: </p>
           <input
             type='text'
-            name='creator'
+            id='creator'
             onChange={this.handleChange}
           />
           <p>Enter contact info you want to provide: </p>
           <input
             type='text'
-            name='contactInfoField'
+            id='contactInfoField'
             onChange={this.handleChange}
           />
           <br/>

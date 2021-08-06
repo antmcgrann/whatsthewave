@@ -1,6 +1,7 @@
 // Functions used in routes
 
 //Imports model so logic can be used
+import expres from 'express';
 import EventData from '../models/eventData.js';
 
 //This is the function referenced in routes
@@ -20,15 +21,14 @@ export const getEvents = async (  req, res  ) => {
 
 export const createEvent = async (req, res) => {
     //Get req parsed in
-    let event = req.json;
-    console.log(event);
     //Everything sent through must match mongoose model
     /*
     if(!(EventData.findOne(event['key']) === null)){
       res.status(202).json({message: "Event exists in database"});
     }
     */
-    const newEvent = new EventData(event);
+    console.log(req.body);
+    const newEvent = new EventData(req.body);
     console.log(newEvent);
     try  {
       await newEvent.save();
@@ -49,7 +49,7 @@ export const editEvent = async (req,res) => {
 }
 
 export const getEventUnique = async (req,res) => {
-  let event = JSON(req),
+  let event = req.body,
   tempBool = true,
   errorMsg = [];
   if(await EventData.findOne({title: event.title}).exec()){
