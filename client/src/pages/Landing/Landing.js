@@ -1,15 +1,13 @@
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { saveEventData } from '../../actions';
+import { saveEventData } from '../../Actions';
 import axios from 'axios';
 //import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 //import eventdata from '../events.json';
 
-import { useSelector } from 'react-redux';
-import { Grid, CircularProgress } from '@material-ui/core';
-
 import './Landing.scss';
+import eventcard from '../../components/EventCard';
 
 
 const containerStyle = {
@@ -17,7 +15,6 @@ const containerStyle = {
     width: '100%',
     height: '100%'
 }
-
 
 export class MapContainer extends React.Component {
     
@@ -136,16 +133,10 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    for( let [key, value] of this.state.eventList){
+                        eventcard(value.title, value.tags, value.desc, value.time, value.date, '', value.creator)
+                    }
 
-                    !this.state.events.length? <CircularProgress /> :(
-                        <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                            {this.eventList.map((event) =>(
-                                <Grid key={event._id} item xs={12} sm={6} md={6}>
-                                    <Event event={event} setCurrentId={event._id} />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    )
                 </div>
 
                 <div class='map-right'>
@@ -179,5 +170,5 @@ export class MapContainer extends React.Component {
 
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDdIBVvzNbyOpiU1qvyJiWbAW6CFm1KoQs'
+    apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer);
