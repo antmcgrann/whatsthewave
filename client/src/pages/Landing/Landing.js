@@ -4,7 +4,6 @@ import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-au
 
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress } from '@material-ui/core';
-import Event from './EventCard';
 
 import './Landing.scss';
 

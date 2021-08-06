@@ -2,28 +2,6 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import './eventcard.css';
 
-/*
-const EventCard = () =>{
-	const events = useSelector((state) => state.events);
-
-	console.log(events);
-	return(
-		<>
-			<div ClassName = "eventdata">
-				{event.data.map((data, key) =>{
-					return(
-						<div key={key}>
-							{data.title + ":" + data.tags}
-							{data.creator}
-							{data.date}
-						</div>
-					);
-				})}
-			</div>
-		</>
-	);
-};
-*/
 
 function Card(title, tags, desc, time, date, location, contact) {
 	return (
