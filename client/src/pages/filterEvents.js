@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -6,7 +7,7 @@ import axios from 'axios';
 //import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 //import eventdata from '../events.json';
 
-import './Landing.scss';
+//import './Landing/Landing.scss';
 
 
 const containerStyle = {
@@ -178,3 +179,4 @@ export class MapContainer extends React.Component {
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyDdIBVvzNbyOpiU1qvyJiWbAW6CFm1KoQs'
 })(MapContainer);
+*/

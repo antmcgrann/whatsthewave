@@ -5,7 +5,7 @@ import { saveEventData } from '../../actions';
 import axios from 'axios';
 //import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 //import eventdata from '../events.json';
-
+import EventFilterSearch from './EventFilterSearch'
 import './Landing.scss';
 
 
@@ -34,7 +34,7 @@ export class MapContainer extends React.Component {
 
     componentDidMount() {
         this.refreshSavedEvents();
-       }
+    }
 
     //Upon component remounting, recieve all events from backend
     refreshSavedEvents = () => {
@@ -74,7 +74,7 @@ export class MapContainer extends React.Component {
 
 
 
-   
+   //Changes Maps address to user chosen place
     handleChange = address => {
         this.setState({ address });
     };
@@ -132,9 +132,10 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    <EventFilterSearch data = {this.state.eventList}/>
                 </div>
 
-                <div class='map-right'>
+                <div class = 'map-right'>
                     <Map containerStyle = {containerStyle}
                         google = {this.props.google}
                         initialCenter = {{
@@ -165,5 +166,5 @@ export class MapContainer extends React.Component {
 
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDdIBVvzNbyOpiU1qvyJiWbAW6CFm1KoQs'
+    apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer);
