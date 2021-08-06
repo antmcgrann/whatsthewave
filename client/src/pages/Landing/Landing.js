@@ -1,11 +1,16 @@
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { saveEventData } from '../../actions';
+import axios from 'axios';
+//import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
+//import eventdata from '../events.json';
 
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress } from '@material-ui/core';
 
 import './Landing.scss';
+
 
 const containerStyle = {
     position: 'relative',  
@@ -15,7 +20,7 @@ const containerStyle = {
 
 
 export class MapContainer extends React.Component {
-
+    
     constructor(props) {
         super(props);
         this.state = { 
@@ -23,13 +28,55 @@ export class MapContainer extends React.Component {
             showingInfoWindow: false,
             activeMarker: {},
             selectedPlace: {},
-
+            eventList: [{}],
             mapCenter: {
                 lat: 42.7248,
                 lng: -73.6918
             }
         };
     }
+
+    componentDidMount() {
+        this.refreshSavedEvents();
+       }
+
+    //Upon component remounting, recieve all events from backend
+    refreshSavedEvents = () => {
+        axios.get("/getEvents")
+        .then(res => {
+            console.log(res.data);
+            localStorage.clear();
+            //Save to local storage, res.data is array of event json objects
+            //Stored in key-value pair
+            //Need to have id_key made in backend
+            let tempArr = [{}];
+            res.data.forEach(element => {
+                let tempObj = {
+                    key: parseInt(element.key),
+                    title: String(element.title),
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.long),
+                    desc: String(element.desc),
+                    creator: String(element.creator),
+                    tags: [element.tags],
+                    rsvp: [element.rsvp],
+                    date: Date(element.date)
+                }
+                console.log(tempObj);
+                localStorage.setItem(element.key, JSON.stringify(tempObj));
+                tempArr.push(tempObj);
+                console.log(element);
+                console.log(localStorage.length);
+                //Successful read and writes to localstorage
+                console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+            });
+            console.log(tempArr);
+            this.setState({eventList: tempArr});
+        });
+    }
+    
+
+
 
    
     handleChange = address => {
@@ -56,7 +103,7 @@ export class MapContainer extends React.Component {
                         onChange = {this.handleChange}
                         onSelect = {this.handleSelect}
                     >
-                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
                             <input
                             {...getInputProps({
@@ -89,13 +136,12 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    const events = useSelector((state) => state.events);
 
-                    !post.length? <CircularProgress /> :(
+                    !this.state.events.length? <CircularProgress /> :(
                         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
-                            {events.map((event) =>(
+                            {this.eventList.map((event) =>(
                                 <Grid key={event._id} item xs={12} sm={6} md={6}>
-                                    <Event event={event} setCurrentId={setCurrentId} />
+                                    <Event event={event} setCurrentId={event._id} />
                                 </Grid>
                             ))}
                         </Grid>
@@ -103,28 +149,31 @@ export class MapContainer extends React.Component {
                 </div>
 
                 <div class='map-right'>
-                    <Map containerStyle={containerStyle}
+                    <Map containerStyle = {containerStyle}
                         google = {this.props.google}
                         initialCenter = {{
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
                         }}
-
                         center = {{
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
-                        }}
-            >
-                        <Marker
-                            position = {{
-                                lat: this.state.mapCenter.lat,
-                                lng: this.state.mapCenter.lng
-                            }}
-                        />
+                        }}>
+                            {this.state.eventList.map( (eventDetail, index) => {
+                                return (
+                                    <Marker
+                                        position = {{
+                                            lat: eventDetail.lat,
+                                            lng: eventDetail.lng
+                                        }}
+                                        key = {eventDetail.key}
+                                    />
+                                )
+                            })}
                     </Map>
                 </div>
             </div>
-      )
+        )
     }
 }
 
