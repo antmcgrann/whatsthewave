@@ -10,8 +10,8 @@ const Header = () => {
                 <div class="nav-menu">
                     <ul class="nav-list">
                         <li class="nav-item">
-                            <a class="nav-link" href="/createvent">Create Event</a>
-                            <a class="nav-link" href="/landing">Map</a>
+                            <a class="nav-link" href="/login">Log In</a>
+                            <a class="nav-link" href="/signup">Sign Up</a>
                         </li>
                     </ul>
                 </div>

@@ -20,25 +20,22 @@ export default class App extends React.Component {
     }
 
     render(){
-    this.updateTitle = this.updateTitle.bind(this);
-    return (
-        <BrowserRouter>
-            <Header/>
-            <Switch>
-                <Route exact path="/">
-                    <Landing updateTitle={this.updateTitle}/>
-                </Route>
-                <Route exact path="/event-management">
-                    <EventManagement updateTitle={this.updateTitle}/>
-                </Route>
-                <Route exact path="/login">
-                    <LogIn updateTitle={this.updateTitle}/>
-                </Route>
-                <Route exact path="/event-management/create">
-                    <CreateEvent />
-                </Route>
-            </Switch>
-        </BrowserRouter>
-    );
+        this.updateTitle = this.updateTitle.bind(this);
+        return (
+            <BrowserRouter>
+                <Header/>
+                <Switch>
+                    <Route exact path="/">
+                        <Landing updateTitle={this.updateTitle}/>
+                    </Route>
+                    <Route exact path="/event-management">
+                        <EventManagement updateTitle={this.updateTitle}/>
+                    </Route>
+                    <Route exact path="/login">
+                        <LogIn updateTitle={this.updateTitle}/>
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        );
     }
 }
