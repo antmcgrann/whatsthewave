@@ -34,6 +34,9 @@ export default class App extends React.Component {
                     <Route exact path="/login">
                         <LogIn updateTitle={this.updateTitle}/>
                     </Route>
+                    <Route exact path="/event-management/create">
+                        <CreateEvent/>
+                    </Route>
                 </Switch>
             </BrowserRouter>
         );
