@@ -3,12 +3,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Header from './components/Header/Header';
 import Landing from './pages/Landing/Landing';
-<<<<<<< HEAD
 import CreateEvent from './pages/CreateEvent/CreateEvent'
-=======
 import EventManagement from './pages/EventManagement/EventManagement'
 import LogIn from './pages/LogIn/LogIn';
->>>>>>> frontend-login
 
 import './styles/main.scss';
 
