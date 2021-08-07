@@ -1,14 +1,19 @@
 .wrapper {
-    display: grid;
+    display: flex;
     height: 100vh;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    padding-top: var(--header-height);
 }
 
 .map-left {
-    grid-column: 1;
+    width: 25%;
+}
+
+.location-search-input {
+    border-radius: 3rem;
+    padding: 1rem 2rem;
+    width: 80%;
 }
 
 .map-right {
-    grid-column: 2/5;
+    width: 75%
 }

@@ -1,0 +1,41 @@
+.hero { 
+    .hero-content {
+        text-align: center;
+    }
+
+    &-container {
+        padding-top: calc(var(--header-height) + 4rem);
+        padding-bottom: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(#316988, #a7ceeb);
+
+        h1 {
+            font-weight: 900;
+            font-size: var(--biggest-font-size);
+        }
+    }
+
+    &-btn{
+        display: inline-flex;
+        align-items: center;
+        padding: .5rem 3rem;
+        background-color: #50A1A6;
+        color: var(--body-color);
+        border-radius: .7rem;
+    }
+
+    &-title {
+        font-size: var(--biggest-font-size);
+    }
+
+    &-title, &-subtitle, &-btn {
+        color: var(--body-color);
+    }
+
+    &-subtitle {
+        margin-bottom: 2rem;
+        font-size: var(--big-font-size);
+    }
+}

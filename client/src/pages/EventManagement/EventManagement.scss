@@ -1,0 +1,27 @@
+.usr-evts {
+    padding: 2rem;
+    color: var(--theme-color);
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    display: flex;
+    flex-direction: column;
+    border-radius: .28571429rem;
+    width: 50%;
+    margin: 1rem;
+    
+    .ui.cards {
+        margin: 0;
+    }
+}
+
+.usr-info {
+    display: flex;
+    justify-content: space-around;
+    padding: 3rem;
+}
+
+@media (max-width: 600px){
+    .usr-info {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

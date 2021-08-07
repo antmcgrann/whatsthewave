@@ -1,7 +1,7 @@
 import React from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-import eventdata from '../events.json';
+//import eventdata from '../events.json';
 
 import './Landing.scss';
 
@@ -43,6 +43,10 @@ export class MapContainer extends React.Component {
             })
             .catch(error => console.error('Error', error));
     };
+
+    componentDidMount() {
+        this.props.updateTitle("Landing");
+    }
    
     render() {
         return (
@@ -99,17 +103,6 @@ export class MapContainer extends React.Component {
                             lat: this.state.mapCenter.lat,
                             lng: this.state.mapCenter.lng
                         }}>
-                            {eventdata.map( (eventDetail, index) => {
-                                return (
-                                    <Marker
-                                        position = {{
-                                            lat: eventDetail.lat,
-                                            lng: eventDetail.lng
-                                        }}
-                                        key = {eventDetail.lat}
-                                    />
-                                )
-                            })}
                     </Map>
                 </div>
             </div>
