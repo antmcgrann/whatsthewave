@@ -13,6 +13,10 @@
     }
 }
 
+.ui.cards .card .content .header {
+    color: var(--theme-color);
+}
+
 .usr-info {
     display: flex;
     justify-content: space-around;

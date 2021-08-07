@@ -59,9 +59,9 @@ export class MapContainer extends React.Component {
                     >
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
-                            <input
+                            <input style={{fontFamily:`Catamaran`}}
                             {...getInputProps({
-                                placeholder: 'Search Places ...',
+                                placeholder: 'Search for nearby events',
                                 className: 'location-search-input',
                             })}
                             />
