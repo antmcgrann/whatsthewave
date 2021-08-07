@@ -1,10 +1,9 @@
 import React from 'react';
+
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { saveEventData } from '../../actions';
 import axios from 'axios';
-//import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-//import eventdata from '../events.json';
 
 import './Landing.scss';
 
@@ -95,6 +94,10 @@ export class MapContainer extends React.Component {
             })
             .catch(error => console.error('Error', error));
     };
+
+    componentDidMount() {
+        this.props.updateTitle("Landing");
+    }
    
     render() {
         return (
@@ -107,9 +110,9 @@ export class MapContainer extends React.Component {
                     >
                     {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                         <div>
-                            <input
+                            <input style={{fontFamily:`Catamaran`}}
                             {...getInputProps({
-                                placeholder: 'Search Places ...',
+                                placeholder: 'Search for nearby events',
                                 className: 'location-search-input',
                             })}
                             />

@@ -3,7 +3,7 @@ import './Header.scss';
 
 const Header = () => {
     return (
-        <header class="header">
+        <header id="header">
             <nav class="nav">
                 <a href="/landing" class="nav-logo">What's The Wave</a>
 
