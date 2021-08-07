@@ -17,7 +17,10 @@ export default class App extends React.Component {
         <BrowserRouter>
             <Header/>
             <Switch>
-                <Route exact path="/">
+                <Route exact path="/landing">
+                    <Landing />
+                </Route>
+                <Route exact path="/createvent">
                     <CreateEvent />
                 </Route>
             </Switch>

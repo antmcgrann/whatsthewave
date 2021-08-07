@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -65,9 +66,11 @@ export class EventForm extends React.Component {
         descField: data.target.descField.value,
         contactInfoField: data.target.contactInfoField.value
       }
+      //Need validity check
       //Need uniqueness check
       await axios.post('/createEvent', eventDataPkg)
         .then(response => console.log(response));
+      this.props.history.push('/landing');
     }
 
     render() {
@@ -142,4 +145,4 @@ export class EventForm extends React.Component {
       }   
 }
 
-export default(EventForm);
+export default withRouter(EventForm);

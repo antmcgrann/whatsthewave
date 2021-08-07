@@ -5,13 +5,13 @@ const Header = () => {
     return (
         <header class="header">
             <nav class="nav">
-                <a href="/" class="nav-logo">What's The Wave</a>
+                <a href="/landing" class="nav-logo">What's The Wave</a>
 
                 <div class="nav-menu">
                     <ul class="nav-list">
                         <li class="nav-item">
-                            <a class="nav-link" href="/signup">Sign Up</a>
-                            <a class="nav-link" href="/login">Log In</a>
+                            <a class="nav-link" href="/createvent">Create Event</a>
+                            <a class="nav-link" href="/landing">Map</a>
                         </li>
                     </ul>
                 </div>
