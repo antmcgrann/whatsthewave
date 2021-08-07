@@ -3,6 +3,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Header from './components/Header/Header';
 import Landing from './pages/Landing/Landing';
+import CreateEvent from './pages/CreateEvent/CreateEvent'
 
 import './styles/main.scss';
 
@@ -17,7 +18,7 @@ export default class App extends React.Component {
             <Header/>
             <Switch>
                 <Route exact path="/">
-                    <Landing />
+                    <CreateEvent />
                 </Route>
             </Switch>
         </BrowserRouter>

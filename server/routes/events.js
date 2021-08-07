@@ -3,18 +3,24 @@
 import express from 'express'
 
 //Import controller functions for router
-import { getEvents, createEvent } from '../controllers/events.js'
-const router = express.Router()
+import { getEvents, createEvent, getOneEvent, editEvent, getEventUnique } from '../controllers/events.js'
+const eventRoutes = express.Router()
 
 // http://localhost:5000
 
 
 // Request to return events created
 // Returns a json 
-router.get('/getEvents', getEvents);
+eventRoutes.get('/getEvents', getEvents);
 
 // Is set up to create model of event to represent on mongodb
 // Only needs a valid req of a event object
-router.post('/createEvent', createEvent);
+eventRoutes.post('/createEvent', createEvent);
 
-export default router;
+eventRoutes.get('/getOneEvent', getOneEvent);
+
+eventRoutes.post('/editEvent', editEvent);
+
+eventRoutes.get('/getEventUnique', getEventUnique);
+
+export default eventRoutes;
