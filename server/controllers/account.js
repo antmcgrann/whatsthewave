@@ -23,3 +23,11 @@ export const createAccount = async (req, res) => {
     }
 
 }
+
+export const getOneAccount = async (req,res) => {
+
+}
+
+export const logInAccount = async (req,res) => {
+  
+}

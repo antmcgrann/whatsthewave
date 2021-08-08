@@ -1,14 +1,25 @@
 .wrapper {
-    display: grid;
+    display: flex;
     height: 100vh;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto;
+    padding-top: var(--header-height);
 }
 
 .map-left {
-    grid-column: 1;
+    width: 25%;
+    color: #9c252570;
+}
+
+.location-search-input {
+    border-radius: 3rem;
+    padding: .75rem 2rem;
+    width: 90%;
+    display: flex;
+    margin: .75rem auto;
+    font-family: 'Catamaran';
+    font-size: var(--medium-font-size);
+    color: var(--theme-color);
 }
 
 .map-right {
-    grid-column: 2/5;
+    width: 75%
 }

@@ -1,8 +1,11 @@
 // import global variables
 @import '../../styles/variables';
 
-.header {
+#header {
     background: #438AA9;
+    position: fixed;
+    width: 100%;
+    z-index: 10000;
 }
 
 .nav {
@@ -10,16 +13,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 1rem;
+    margin: 0 1.5rem;
 }
 
 .nav-logo {
     color: var(--light-text);
-    font-weight: 300;
+    font-weight: bold;
+    font-size: var(--big-font-size);
 }
 
 .nav-link {
     color: var(--light-text);
+    font-size: var(--normal-font-size);
+    font-weight: 300;
     margin-right: 1rem;
-    font-size: 0.8rem;
 }
