@@ -12,6 +12,7 @@ const Header = () => {
                         <li class="nav-item">
                             <a class="nav-link" href="/login">Log In</a>
                             <a class="nav-link" href="/signup">Sign Up</a>
+                            <a class="nav-link" href="/event-management/create">Create Event</a>
                         </li>
                     </ul>
                 </div>

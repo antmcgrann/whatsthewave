@@ -205,7 +205,7 @@ export class EventForm extends React.Component {
           
 
         );
-        // Add more fields
+        
       }   
 }
 
