@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import './eventcard.css';
 
 
-function Card(title, tags, desc, time, date, location, contact) {
+const EventCard = (title, tags, lat, lng, date, time, desc, contact) => {
 	return (
 		<div classname = 'card-container'>
 			<div classname = 'card-title'>
@@ -14,7 +14,7 @@ function Card(title, tags, desc, time, date, location, contact) {
 			</div>
 			<div classname = 'card-content'>
 				<div classname = 'card-location'>
-					<p><b>Location: </b>{location}</p>
+					<p><b>Location: </b>{lat}{lng}</p>
 				</div>
 				<div classname = 'card-date-time'>
 					<p><b>Date and time: </b>{date}{time}</p>

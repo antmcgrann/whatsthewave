@@ -7,7 +7,10 @@ import axios from 'axios';
 //import eventdata from '../events.json';
 
 import './Landing.scss';
-import eventcard from '../../components/EventCard';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography'
+
 
 
 const containerStyle = {
@@ -95,47 +98,80 @@ export class MapContainer extends React.Component {
         return (
             <div class='wrapper'>
                 <div class='map-left'>
-                    <PlacesAutocomplete
-                        value = {this.state.address}
-                        onChange = {this.handleChange}
-                        onSelect = {this.handleSelect}
-                    >
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div>
-                            <input
-                            {...getInputProps({
-                                placeholder: 'Search Places ...',
-                                className: 'location-search-input',
-                            })}
-                            />
-                            <div className="autocomplete-dropdown-container">
-                                {loading && <div>Loading...</div>}
-                                {suggestions.map(suggestion => {
-                                    const className = suggestion.active
-                                    ? 'suggestion-item--active'
-                                    : 'suggestion-item';
-                                    // inline style for demonstration purpose
-                                    const style = suggestion.active
-                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                    return (
-                                    <div
-                                        {...getSuggestionItemProps(suggestion, {
-                                        className,
-                                        style,
-                                        })}
-                                    >
-                                        <span>{suggestion.description}</span>
-                                    </div>
-                                    );
+                    <div class = "places-search-bar">
+                        <PlacesAutocomplete
+                            value = {this.state.address}
+                            onChange = {this.handleChange}
+                            onSelect = {this.handleSelect}
+                        >
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                            <div>
+                                <input
+                                {...getInputProps({
+                                    placeholder: 'Search Places ...',
+                                    className: 'location-search-input',
                                 })}
+                                />
+                                <div className="autocomplete-dropdown-container">
+                                    {loading && <div>Loading...</div>}
+                                    {suggestions.map(suggestion => {
+                                        const className = suggestion.active
+                                        ? 'suggestion-item--active'
+                                        : 'suggestion-item';
+                                        // inline style for demonstration purpose
+                                        const style = suggestion.active
+                                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                        return (
+                                        <div
+                                            {...getSuggestionItemProps(suggestion, {
+                                            className,
+                                            style,
+                                            })}
+                                        >
+                                            <span>{suggestion.description}</span>
+                                        </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                        )}
-                    </PlacesAutocomplete>
-                   this.state.eventList.map( (key, value) => {
-                         eventcard(key.title, key.tags, key.desc, key.time, key.date, '', key.creator)
-                    })
+                            )}
+                        </PlacesAutocomplete>
+                    </div>
+                    <div class = "Event-cards">
+                        {this.state.eventList.map((item, i) => {
+                            return (
+                                <div class = "Indv-card">
+                                    <Card>
+                                        <CardContent>
+                                            <Typography class = "title" variant = "p" component = "body">
+                                                <b>{item.title}</b><br/>
+                                            </Typography>
+                                            <Typography variant = "p">
+                                                {typeof item.tags !== "undefined" ? item.tags.map((tag_name) => 
+                                                    {return (
+                                                        <div class = "tags">{tag_name.join(", ")}</div>
+                                                    )}
+                                                ): <p>No tags</p>}
+                                                <br/>
+                                            </Typography>
+                                            <div class = "details">
+                                                <Typography variant = "p">
+                                                    <b>Location: </b>{item.lat}, {item.lng}<br/>
+                                                </Typography>
+                                                <Typography variant = "p">
+                                                    <b>Description: </b>{item.desc}<br/>
+                                                </Typography>
+                                                <Typography variant = "p">
+                                                    <b>Creator: </b> {item.creator}<br/>
+                                                </Typography>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            );
+                        })}
+                    </div>
 
                 </div>
 
