@@ -6,17 +6,16 @@ import internal from 'stream';
 const eventSchema = mongoose.Schema({
     key: Number,
     title: String,
-    lat: String,
-    long: String,
+    latLng: {},
     creator: String,
     tags: [String],
     rsvp: [String],
-    locationField: String,
     capacityfield: String,
     dateField: String,
     timeField: String,
     descField: String,
-    contactInfoField: String
+    contactInfoField: String,
+    address: String
 });
 
 // Creates the model on the db, made from schema

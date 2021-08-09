@@ -19,12 +19,21 @@ export class EventForm extends React.Component {
             timeField: '',
             descField: '',
             contactInfoField: '',
-            lat: Number,
-            lng: Number,
+            coords: {},
             key: Number
-        }
+            
+        };
+        //this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+        this.handlePlaceChange = this.handlePlaceChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        //this.handleSelect =
     }
+/*
+    componentDidMount = () =>{
+      //this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
+      //this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
+    };
 
     eventUniqueness = async ({ eventObj }) => {
       //  use to query db for event uniqueness before confirming creation
@@ -41,7 +50,20 @@ export class EventForm extends React.Component {
           }
           
         })
-    }
+    };
+*/
+
+
+    handleSelect = address => {
+      geocodeByAddress(address)
+          .then(results => getLatLng(results[0]))
+          .then(latLng => {
+              console.log('Success', latLng);
+              this.setState({ address })
+              this.setState({ coords: latLng })
+          })
+          .catch(error => console.error('Error', error));
+    };
 
     handleChange = (event) => {
       let nam = event.target.name;
@@ -49,6 +71,9 @@ export class EventForm extends React.Component {
       this.setState({[nam]: val});
     }
 
+    handlePlaceChange = address => {
+      this.setState({address});
+    };
 
 
     handleSubmit = async data => {
@@ -59,25 +84,27 @@ export class EventForm extends React.Component {
         title: data.target.title.value,
         creator: data.target.creator.value,
         tags: data.target.categoryTags.value.split(" "),
-        locationField: data.target.locationField.value,
         capacityfield: data.target.capacityField.value,
         dateField: data.target.dateField.value,
         timeField: data.target.timeField.value,
         descField: data.target.descField.value,
-        contactInfoField: data.target.contactInfoField.value
+        contactInfoField: data.target.contactInfoField.value,
+        latLng: this.state.coords,
+        addressField: this.state.address
       }
       //Need validity check
       //Need uniqueness check
       await axios.post('/createEvent', eventDataPkg)
         .then(response => console.log(response));
-      this.props.history.push('/landing');
-    }
+      this.props.history.push('/');
+    };
 
     render() {
       // Need UI
         return (
           <div id = "eventform" align = "middle" >
           <form onSubmit={this.handleSubmit}>
+          <div class="column">
           <h1>Event Creation</h1>
           <p>Enter event title: </p>
           <input
@@ -97,12 +124,48 @@ export class EventForm extends React.Component {
             id='categoryTags'
             onChange={this.handleChange}
           />
-          <p>Enter Location: </p>
-          <input
-            type='text'
-            id='locationField'
-            onChange={this.handleChange}
-          />
+          </div>
+          <div class="column">
+          <PlacesAutocomplete
+                        value = {this.state.address}
+                        onChange = {this.handlePlaceChange}
+                        onSelect = {this.handleSelect}
+                    >
+                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                        <div>
+                            <input style={{fontFamily:`Catamaran`}}
+                            {...getInputProps({
+                                placeholder: 'Enter location',
+                                className: 'location-search-input',
+                            })}
+                            />
+                            <div className="autocomplete-dropdown-container">
+                                {loading && <div>Loading...</div>}
+                                {suggestions.map(suggestion => {
+                                    const className = suggestion.active
+                                    ? 'suggestion-item--active'
+                                    : 'suggestion-item';
+                                    // inline style for demonstration purpose
+                                    const style = suggestion.active
+                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                    return (
+                                    <div
+                                        {...getSuggestionItemProps(suggestion, {
+                                        className,
+                                        style,
+                                        })}
+                                    >
+                                        <span>{suggestion.description}</span>
+                                    </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        )}
+                    </PlacesAutocomplete>
+          </div>
+          <div class="column">
           <p>Enter capacity: </p>
           <input
             type='text'
@@ -133,6 +196,7 @@ export class EventForm extends React.Component {
             id='contactInfoField'
             onChange={this.handleChange}
           />
+          </div>
           <br/>
           <br/>
           <input type='submit' />
