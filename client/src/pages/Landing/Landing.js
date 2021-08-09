@@ -62,7 +62,7 @@ export class MapContainer extends React.Component {
             //Save to local storage, res.data is array of event json objects
             //Stored in key-value pair
             //Need to have id_key made in backend
-            let tempArr = [{}];
+            let tempArr = [];
             res.data.forEach(element => {
                 let tempObj = {
                     key: parseInt(element.key),

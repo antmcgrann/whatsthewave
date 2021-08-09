@@ -92,6 +92,9 @@ export class EventForm extends React.Component {
       // Generate a key for the event and add
       data.preventDefault();
       //Prob want to check each field for validity
+      if(this.state.address === ''){
+        return;
+      }
       let eventDataPkg = {
         title: data.target.title.value,
         creator: data.target.creator.value,
@@ -118,27 +121,31 @@ export class EventForm extends React.Component {
           <div id = "eventform" align = "middle" class = "row">
           <form onSubmit={this.handleSubmit}>
           <h1>Event Creation</h1>
-          <div class="column">
-          <p>Enter event title: </p>
-          <input
-            type='text'
-            id='title'
-            onChange={this.handleChange}
-          />
-          <p>Description: </p>
-          <input
-            type='text'
-            id='descField'
-            onChange={this.handleChange}
-          />
-          <p>Enter tags: </p>
-          <input
-            type='text'
-            id='categoryTags'
-            onChange={this.handleChange}
-          />
-          </div>
-          <div class="column">
+          <fieldset>
+          <legend>Event Information</legend>
+          <p>
+            <label>Enter Event Title :<strong><abbr title="This field is mandatory" aria-label="required">*</abbr></strong></label>
+            <br/>
+              <input
+                type='text'
+                id='title'
+                onChange={this.handleChange}
+              />
+          </p>
+          
+          <p>
+          <label for="categoryTags">Event tags (separate by space)</label>
+            <br/>
+            <textarea id="categoryTags" name="text" maxlength="140" rows="2" onChange={this.handleChange}></textarea>
+          </p>
+          <p>
+            <label for="descField">Event description</label>
+            <br/>
+            <textarea id="descField" name="msg" maxlength="280" rows="5" onChange={this.handleChange}></textarea>
+          </p>
+          </fieldset>
+          <fieldset>
+          <legend>Google Places Search</legend>
           <PlacesAutocomplete
                         value = {this.state.address}
                         onChange = {this.handlePlaceChange}
@@ -177,8 +184,9 @@ export class EventForm extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-          </div>
-          <div class="column">
+          </fieldset>
+          <fieldset>
+          <legend>Additional Info</legend>
           <p>Enter capacity: </p>
           <input
             type='text'
@@ -209,7 +217,7 @@ export class EventForm extends React.Component {
             id='contactInfoField'
             onChange={this.handleChange}
           />
-          </div>
+          </fieldset>
           <br/>
           <br/>
           <input type='submit' />
