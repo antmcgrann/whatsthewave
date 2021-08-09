@@ -59,8 +59,44 @@ export class MapContainer extends React.Component {
                     rsvp: [element.rsvp],
                     date: Date(element.date)
                 }
+                
+                console.log(tempObj);
+                localStorage.setItem(element.key, JSON.stringify(tempObj));
+                tempArr.push(tempObj);
+                console.log(element);
+                console.log(localStorage.length);
+                //Successful read and writes to localstorage
+                console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+            });
+            console.log(tempArr);
+            this.setState({eventList: tempArr});
+        });
+    }
+    
+    eventFilter = (event) => {
+        event.preventDefault();
+        axios.get("/getEvents")
+        .then(res => {
+            console.log(res.data);
+            localStorage.clear();
+            //Save to local storage, res.data is array of event json objects
+            //Stored in key-value pair
+            //Need to have id_key made in backend
+            let tempArr = [{}];
+            res.data.forEach(element => {
+                let tempObj = {
+                    key: parseInt(element.key),
+                    title: String(element.title),
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.long),
+                    desc: String(element.desc),
+                    creator: String(element.creator),
+                    tags: [element.tags],
+                    rsvp: [element.rsvp],
+                    date: Date(element.date)
+                }
                 tempObj.tags.forEach(element2=> {
-                    if(typeof event.target.value == 'undefined' || event.target.value === element2) {
+                    if(typeof event.target !== 'undefined' && event.target.value.toLowerCase() === element2.toLowerCase()) {
                         console.log(tempObj);
                         localStorage.setItem(element.key, JSON.stringify(tempObj));
                         tempArr.push(tempObj);
@@ -70,21 +106,11 @@ export class MapContainer extends React.Component {
                         console.log(JSON.parse(localStorage.getItem(element.key))['title']);
                     }
                 });
-                /*
-                console.log(tempObj);
-                localStorage.setItem(element.key, JSON.stringify(tempObj));
-                tempArr.push(tempObj);
-                console.log(element);
-                console.log(localStorage.length);
-                //Successful read and writes to localstorage
-                console.log(JSON.parse(localStorage.getItem(element.key))['title']);
-                */
             });
             console.log(tempArr);
             this.setState({eventList: tempArr});
         });
     }
-    
 
 
 
@@ -146,9 +172,12 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    <div class = "Search">
+                    <div class = "Sesarch">
                         <div class = "Search-inputs">
-                            <input type = "text" placeholder = "Search for event tags" onChange = {this.refreshSavedEvents}/>
+                            <form class = "Search" onSubmit = {this.eventFilter}>
+                                <input type = "text" placeholder = "Search for event tags"/>
+                                <input class = "submit-btn" type = "submit" value = "submit"></input>
+                            </form>
                         </div>
                     </div>
                 </div>

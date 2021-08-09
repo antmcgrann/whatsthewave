@@ -12,3 +12,17 @@
 .map-right {
     grid-column: 2/5;
 }
+
+.Search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 50%;
+    padding-left: 200px;
+}
+
+.Submit-btn {
+    width: 150px;
+}
