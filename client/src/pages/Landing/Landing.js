@@ -153,37 +153,42 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    <div>
+                        {this.state.eventList.length == 1 ? <p>We found 1 event for you</p> : 
+                            <p>We found {this.state.eventList.length} events for you</p>}<br/>
+                    </div>
                     <div class = "Event-cards">
                         {this.state.eventList.map((item, i) => {
                             return (
-                                <div class = "Indv-card">
-                                    <Card>
-                                        <CardContent>
-                                            <Typography class = "title" variant = "p" component = "body">
-                                                <b>{item.title}</b><br/>
+                                <Card hover className = "Indv-card">
+                                    <CardContent>
+                                        <Typography class = "title" variant = "p" component = "body">
+                                            <b>{item.title}</b><br/>
+                                        </Typography>
+                                        <Typography variant = "p">
+                                            {typeof item.tags !== "undefined" ? item.tags.map((tag_name) => 
+                                                {return (
+                                                    <div class = "tags">{tag_name.join(", ")}</div>
+                                                )}
+                                            ): <p>No tags</p>}
+                                            <br/>
+                                        </Typography>
+                                        <div class = "details">
+                                            <Typography variant = "p">
+                                                <b>Location: </b>{item.addressField}<br/>
                                             </Typography>
                                             <Typography variant = "p">
-                                                {typeof item.tags !== "undefined" ? item.tags.map((tag_name) => 
-                                                    {return (
-                                                        <div class = "tags">{tag_name.join(", ")}</div>
-                                                    )}
-                                                ): <p>No tags</p>}
-                                                <br/>
+                                                <b>Date and time: </b>{item.dateField}, {item.timeField}<br/>
                                             </Typography>
-                                            <div class = "details">
-                                                <Typography variant = "p">
-                                                    <b>Location: </b>{item.lat}, {item.lng}<br/>
-                                                </Typography>
-                                                <Typography variant = "p">
-                                                    <b>Description: </b>{item.desc}<br/>
-                                                </Typography>
-                                                <Typography variant = "p">
-                                                    <b>Creator: </b> {item.creator}<br/>
-                                                </Typography>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </div>
+                                            <Typography variant = "p">
+                                                <b>Description: </b>{item.descField}<br/>
+                                            </Typography>
+                                            <Typography variant = "p">
+                                                <b>Contact: </b> {item.contactInfoField}<br/>
+                                            </Typography>
+                                        </div>
+                                    </CardContent>
+                                </Card>
                             );
                         })}
                     </div>

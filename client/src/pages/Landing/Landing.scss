@@ -6,7 +6,7 @@
 
 .map-left {
     width: 25%;
-    color: #9c252570;
+    //color: #9c252570;
     background-color: #f2f2f2;
 }
 
@@ -17,7 +17,8 @@
     display: flex;
     margin: .75rem auto;
     font-family: 'Catamaran';
-    font-size: var(--medium-font-size);
+    /*font-size: var(--medium-font-size);*/
+    font-size: 18px;
     color: var(--theme-color);
 }
 
@@ -42,13 +43,10 @@
     padding-right: 10px;
 }
 
-.Event-cards:hover {
-    box-shadow: 10px, 20px, 5px; 
-}
-
 .Indv-card {
     padding: .4rem;
     box-shadow: 10px, 20px, 5px; 
+    border-radius: 30px;
 }
 
 .Indv-cards {
@@ -81,5 +79,5 @@
 }
 
 .Indv-car:hover {
-    box-shadow: 10px, 20px, 5px; 
+    color: black;
 }
