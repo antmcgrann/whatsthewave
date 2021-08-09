@@ -9,10 +9,14 @@ import React from 'react';
 
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { saveEventData } from '../../actions';
+import { saveEventData } from '../../Actions';
 import axios from 'axios';
 
 import './Landing.scss';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography'
+
 
 
 const containerStyle = {
@@ -105,7 +109,8 @@ export class MapContainer extends React.Component {
     componentDidMount() {
         this.props.updateTitle("Landing");
     }
-   
+
+
     render() {
         return (
             <div class='wrapper'>
@@ -148,49 +153,85 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    <div class = "Event-cards">
+                        {this.state.eventList.map((item, i) => {
+                            return (
+                                <div class = "Indv-card">
+                                    <Card>
+                                        <CardContent>
+                                            <Typography class = "title" variant = "p" component = "body">
+                                                <b>{item.title}</b><br/>
+                                            </Typography>
+                                            <Typography variant = "p">
+                                                {typeof item.tags !== "undefined" ? item.tags.map((tag_name) => 
+                                                    {return (
+                                                        <div class = "tags">{tag_name.join(", ")}</div>
+                                                    )}
+                                                ): <p>No tags</p>}
+                                                <br/>
+                                            </Typography>
+                                            <div class = "details">
+                                                <Typography variant = "p">
+                                                    <b>Location: </b>{item.lat}, {item.lng}<br/>
+                                                </Typography>
+                                                <Typography variant = "p">
+                                                    <b>Description: </b>{item.desc}<br/>
+                                                </Typography>
+                                                <Typography variant = "p">
+                                                    <b>Creator: </b> {item.creator}<br/>
+                                                </Typography>
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-
                 <div class='map-right'>
-                    <Map containerStyle = {containerStyle}
-                        google = {this.props.google}
-                        initialCenter = {{
-                            lat: this.state.mapCenter.lat,
-                            lng: this.state.mapCenter.lng
-                        }}
-                        center = {{
-                            lat: this.state.mapCenter.lat,
-                            lng: this.state.mapCenter.lng
-                        }}>
-                            {this.state.eventList.map( (eventDetail, index) => {
-                                return (
-                                    <InfoWindow
-                                        // This allows for pop up window instead of marker
-                                        // But its not working
-                                        position={{
-                                            lat: eventDetail.lat,
-                                            lng: eventDetail.lng
-                                        }}
-                                        >
-                                        <div style={eventDivStyle}>
-                                            <h1>eventDetail.title</h1>
-                                        </div>
-                                    </InfoWindow>
-                                    /*
-                                    <Marker
-                                        position = {{
-                                            lat: eventDetail.lat,
-                                            lng: eventDetail.lng
-                                        }}
-                                        key = {eventDetail.key}
-                                    /> */
-                                )
-                            })}
-                    </Map>
+                        <Map containerStyle = {containerStyle}
+                            google = {this.props.google}
+                            initialCenter = {{
+                                lat: this.state.mapCenter.lat,
+                                lng: this.state.mapCenter.lng
+                            }}
+                            center = {{
+                                lat: this.state.mapCenter.lat,
+                                lng: this.state.mapCenter.lng
+                            }}>
+                                {this.state.eventList.map( (eventDetail, index) => {
+                                    return (
+                                        /*
+                                        <InfoWindow
+                                            // This allows for pop up window instead of marker
+                                            // But its not working
+                                            position={{
+                                                lat: eventDetail.lat,
+                                                lng: eventDetail.lng
+                                            }}
+                                            >
+                                            <div style={eventDivStyle}>
+                                                <h1>eventDetail.title</h1>
+                                            </div>
+                                        </InfoWindow>
+                                        */
+                                        <Marker
+                                            position = {{
+                                                lat: eventDetail.lat,
+                                                lng: eventDetail.lng
+                                            }}
+                                            key = {eventDetail.key}
+                                        />
+                                    )
+                                })}
+                        </Map>
                 </div>
             </div>
         )
     }
 }
+
+
 
 
 export default GoogleApiWrapper({

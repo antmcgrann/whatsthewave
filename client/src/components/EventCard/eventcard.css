@@ -1,0 +1,21 @@
+.card-container {
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 10px, 5px;
+    transition: .3s;
+    animation: ease-in-out;
+    height: 150px;
+}
+
+.card-container:hover {
+    transform: scale(1.05);
+}
+
+.card-content {
+    margin: 1 rem;
+    margin-top: .5 rem;
+}
+
+.card-title {
+    color: 325569;
+}

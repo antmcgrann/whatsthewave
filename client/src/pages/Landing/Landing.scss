@@ -21,5 +21,64 @@
 }
 
 .map-right {
-    width: 75%
+    width: 75%;
+    grid-column: 1;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #f2f2f2;
+}
+
+.map-right {
+    grid-column: 2/5;
+}
+
+.Event-cards {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Event-cards:hover {
+    box-shadow: 10px, 20px, 5px; 
+}
+
+.Indv-card {
+    padding: .4rem;
+    box-shadow: 10px, 20px, 5px; 
+}
+
+.Indv-cards {
+    border-radius: 100px;
+    box-sizing: border-box;
+    box-shadow: 10px, 20px, 5px; 
+    padding: .4rem;
+}
+
+.places-search-bar {
+    position: fixed;
+}
+
+.title {
+    color: hsl(202, 73%, 61%);
+    font-size: 36px;
+    margin-top: -4px;
+    margin-bottom: 0px;
+}
+
+.details {
+    line-height: 28px;
+    margin-top: -15px;
+    font-size: 18px;
+}
+
+.tags {
+    margin-top: -16px;
+    font-size: 18px;
+}
+
+.Indv-car:hover {
+    box-shadow: 10px, 20px, 5px; 
 }
