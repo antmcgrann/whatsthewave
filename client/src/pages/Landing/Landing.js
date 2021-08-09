@@ -70,11 +70,14 @@ export class MapContainer extends React.Component {
                     latLng: element.latLng,
                     lat: Number(element.latLng.lat),
                     lng: Number(element.latLng.lng),
-                    desc: String(element.desc),
+                    descField: String(element.descField),
                     creator: String(element.creator),
                     tags: [element.tags],
                     rsvp: [element.rsvp],
-                    date: Date(element.date)
+                    dateField: String(element.dateField),
+                    addressField: String(element.addressField),
+                    contactInfoField: String(element.contactInfoField),
+                    capacity: String(element.capacityField)
                 }
                 console.log(tempObj);
                 localStorage.setItem(element.key, JSON.stringify(tempObj));

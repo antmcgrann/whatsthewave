@@ -15,7 +15,7 @@ const eventSchema = mongoose.Schema({
     timeField: String,
     descField: String,
     contactInfoField: String,
-    address: String
+    addressField: String
 });
 
 // Creates the model on the db, made from schema
