@@ -49,6 +49,7 @@ export class MapContainer extends React.Component {
     }
 
     componentDidMount() {
+        this.props.updateTitle("Landing");
         this.refreshSavedEvents();
        }
 
@@ -66,8 +67,9 @@ export class MapContainer extends React.Component {
                 let tempObj = {
                     key: parseInt(element.key),
                     title: String(element.title),
-                    lat: parseFloat(element.lat),
-                    lng: parseFloat(element.long),
+                    latLng: element.latLng,
+                    lat: Number(element.latLng.lat),
+                    lng: Number(element.latLng.lng),
                     desc: String(element.desc),
                     creator: String(element.creator),
                     tags: [element.tags],
@@ -77,13 +79,14 @@ export class MapContainer extends React.Component {
                 console.log(tempObj);
                 localStorage.setItem(element.key, JSON.stringify(tempObj));
                 tempArr.push(tempObj);
-                console.log(element);
+                console.log(element.latLng);
                 console.log(localStorage.length);
                 //Successful read and writes to localstorage
                 console.log(JSON.parse(localStorage.getItem(element.key))['title']);
             });
             console.log(tempArr);
             this.setState({eventList: tempArr});
+            console.log(this.state.eventList);
         });
     }
     
@@ -105,10 +108,6 @@ export class MapContainer extends React.Component {
             })
             .catch(error => console.error('Error', error));
     };
-
-    componentDidMount() {
-        this.props.updateTitle("Landing");
-    }
 
 
     render() {
@@ -155,6 +154,7 @@ export class MapContainer extends React.Component {
                     </PlacesAutocomplete>
                     <div class = "Event-cards">
                         {this.state.eventList.map((item, i) => {
+                            console.log(item);
                             return (
                                 <div class = "Indv-card">
                                     <Card>

@@ -33,19 +33,20 @@ export class EventForm extends React.Component {
             //Following need to be calculated
             //WIP
             coords: {},
-            key: Number,
-            // Location
+            key: Number
             
         }
         //this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-/*
+
     componentDidMount = () =>{
       //this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
       //this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
+      this.props.updateTitle("Event Management");
     };
+/*
     eventUniqueness = async ({ eventObj }) => {
       //  use to query db for event uniqueness before confirming creation
       let msg = JSON(eventObj);
