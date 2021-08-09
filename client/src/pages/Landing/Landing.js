@@ -87,9 +87,45 @@ export class MapContainer extends React.Component {
         });
     }
     
-
-
-
+    eventFilter = (event) => {
+        event.preventDefault();
+        axios.get("/getEvents")
+        .then(res => {
+            console.log(res.data);
+            localStorage.clear();
+            //Save to local storage, res.data is array of event json objects
+            //Stored in key-value pair
+            //Need to have id_key made in backend
+            let tempArr = [{}];
+            res.data.forEach(element => {
+                let tempObj = {
+                    key: parseInt(element.key),
+                    title: String(element.title),
+                    lat: parseFloat(element.lat),
+                    lng: parseFloat(element.long),
+                    desc: String(element.desc),
+                    creator: String(element.creator),
+                    tags: [element.tags],
+                    rsvp: [element.rsvp],
+                    date: Date(element.date)
+                }
+                tempObj.tags.forEach(element2=> {
+                    if(typeof event.target !== 'undefined' && typeof element2 !== 'undefined' && event.target.value.toLowerCase() === element2.toLowerCase()) {
+                        console.log(tempObj);
+                        localStorage.setItem(element.key, JSON.stringify(tempObj));
+                        tempArr.push(tempObj);
+                        console.log(element);
+                        console.log(localStorage.length);
+                        //Successful read and writes to localstorage
+                        console.log(JSON.parse(localStorage.getItem(element.key))['title']);
+                    }
+                });
+            });
+            console.log(tempArr);
+            this.setState({eventList: tempArr});
+        });
+    }
+ 
    
     handleChange = address => {
         this.setState({ address });
@@ -153,6 +189,14 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
+                    <div class = "Sesarch">
+                       <div class = "Search-inputs">
+                           <form class = "Search" onSubmit = {this.eventFilter}>
+                               <input type = "text" placeholder = "Search for event tags"/>
+                               <input class = "submit-btn" type = "submit" value = "submit"></input>
+                           </form>
+                       </div>
+                   </div>
                     <div>
                         {this.state.eventList.length == 1 ? <p>We found 1 event for you</p> : 
                             <p>We found {this.state.eventList.length} events for you</p>}<br/>
