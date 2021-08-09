@@ -1,3 +1,10 @@
+//TODO
+/*
+Create events by clicking on map first, then redirection
+
+
+
+*/
 import React from 'react';
 
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';

@@ -1,8 +1,19 @@
 import React from 'react';
 import axios from 'axios';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { withRouter } from 'react-router-dom'
+import PlacesAutocomplete ,{
+  geocodeByAddress,
+  geocodeByPlaceId,
+  getLatLng,
+} from 'react-places-autocomplete';
+//import Autocomplete from "react-google-autocomplete";
+import { withRouter } from 'react-router-dom';
+import "./CreateEvent.scss";
+import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 
+//import "./places.html";
+
+
+//loadScript('https://maps.googleapis.com/maps/api/js?key=process.env.REACT_APP_API_KEY&libraries=places&callback=initMap');
 
 
 export class EventForm extends React.Component {
@@ -10,31 +21,31 @@ export class EventForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            address: '',
             title: '',
             tags: [],
             creator: '',
-            locationField: '',
             capacityfield: '',
             dateField: '',
             timeField: '',
             descField: '',
             contactInfoField: '',
+            //Following need to be calculated
+            //WIP
             coords: {},
-            key: Number
+            key: Number,
+            // Location
             
-        };
-        //this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
-        this.handlePlaceChange = this.handlePlaceChange.bind(this);
+        }
+        //this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        //this.handleSelect =
     }
 /*
     componentDidMount = () =>{
       //this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
       //this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
     };
-
     eventUniqueness = async ({ eventObj }) => {
       //  use to query db for event uniqueness before confirming creation
       let msg = JSON(eventObj);
@@ -69,10 +80,10 @@ export class EventForm extends React.Component {
       let nam = event.target.name;
       let val = event.target.value;
       this.setState({[nam]: val});
-    }
+    };
 
     handlePlaceChange = address => {
-      this.setState({address});
+      this.setState({ address });
     };
 
 
@@ -102,10 +113,11 @@ export class EventForm extends React.Component {
     render() {
       // Need UI
         return (
-          <div id = "eventform" align = "middle" >
+          
+          <div id = "eventform" align = "middle" class = "row">
           <form onSubmit={this.handleSubmit}>
-          <div class="column">
           <h1>Event Creation</h1>
+          <div class="column">
           <p>Enter event title: </p>
           <input
             type='text'
@@ -209,4 +221,6 @@ export class EventForm extends React.Component {
       }   
 }
 
-export default withRouter(EventForm);
+export default withRouter(GoogleApiWrapper({
+  apiKey: process.env.REACT_APP_API_KEY
+}) (EventForm));
