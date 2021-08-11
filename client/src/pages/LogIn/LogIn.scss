@@ -1,6 +1,6 @@
 .login {
     &-left {
-        width: 50%;
+        width: 40%;
         height: 100vh;
         background: linear-gradient(#316988, #a7ceeb);
         display: flex;
@@ -10,7 +10,7 @@
         justify-content: center;
         display: flex;
         flex-direction: column;
-        width: 50%;
+        width: 60%;
         height: 100vh;
         color: var(--theme-color);
     
