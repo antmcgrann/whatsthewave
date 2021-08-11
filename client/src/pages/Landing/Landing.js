@@ -155,11 +155,9 @@ export class MapContainer extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-                    <div>
+                    <div class = "event-cards">
                         {this.state.eventList.length == 1 ? <p>We found 1 event for you</p> : 
                             <p>We found {this.state.eventList.length} events for you</p>}
-                    </div>
-                    <div class = "Event-cards">
                         {this.state.eventList.map((item, i) => {
                             console.log(item);
                             return (

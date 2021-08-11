@@ -12,6 +12,10 @@
     overflow-y: scroll;
 }
 
+.event-count-label {
+    display: block;
+}
+
 .location-search-input {
     border-radius: 3rem;
     padding: .75rem 2rem;
@@ -36,14 +40,11 @@
     grid-column: 2/5;
 }
 
-.Event-cards {
+.event-cards {
     width: auto;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 40px;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .Indv-card {
