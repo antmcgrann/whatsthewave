@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './LogIn.scss';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 
 export default class LogIn extends React.Component {
     constructor(props) {
