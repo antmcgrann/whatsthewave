@@ -55,7 +55,7 @@ export class MapContainer extends React.Component {
 
     //Upon component remounting, recieve all events from backend
     refreshSavedEvents = async () => {
-        await axios.get("/getEvents")
+        await axios.get("/events/getEvents")
         .then(res => {
             console.log(res.data);
             localStorage.clear();
@@ -65,7 +65,7 @@ export class MapContainer extends React.Component {
             let tempArr = [];
             res.data.forEach(element => {
                 let tempObj = {
-                    key: parseInt(element.key),
+                    id: String(element._id),
                     title: String(element.title),
                     latLng: element.latLng,
                     lat: Number(element.latLng.lat),

@@ -10,9 +10,11 @@ const app = express();
 
 app.use(express.json({ limit: "30mb", extended: true}));
 app.use(express.urlencoded({ limit: "30mb", extended: true}));
+//app.use(express.bodyParser());
 app.use(cors());
 
-app.use('/', eventRoutes);
+app.use('/events', eventRoutes);
+//app.use('/accounts', accountRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://whatsthewave-user:whatsthewave@cluster0.ayb4p.mongodb.net/whatsthewave?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;

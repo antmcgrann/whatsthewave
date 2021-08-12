@@ -29,5 +29,12 @@ export const getOneAccount = async (req,res) => {
 }
 
 export const logInAccount = async (req,res) => {
-  
+  let login = req.body;
+  let acc = await AccountData.findOne(req.body.user);
+}
+
+//Add event id to account
+//Req should say whether it is the creator or rsvp
+export const addEventToAccount = async (req,res) => {
+
 }

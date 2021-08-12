@@ -105,11 +105,12 @@ export class EventForm extends React.Component {
         descField: data.target.descField.value,
         contactInfoField: data.target.contactInfoField.value,
         latLng: this.state.coords,
-        addressField: this.state.address
+        addressField: this.state.address,
+        key: Number
       }
       //Need validity check
       //Need uniqueness check
-      await axios.post('/createEvent', eventDataPkg)
+      await axios.post('/events/createEvent', eventDataPkg)
         .then(response => console.log(response));
       this.props.history.push('/');
     };
