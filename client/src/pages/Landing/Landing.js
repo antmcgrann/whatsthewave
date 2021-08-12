@@ -44,7 +44,8 @@ export class MapContainer extends React.Component {
             mapCenter: {
                 lat: 42.7248,
                 lng: -73.6918
-            }
+            },
+            filter: ''
         };
     }
 
@@ -115,9 +116,10 @@ export class MapContainer extends React.Component {
                     rsvp: [element.rsvp],
                     date: Date(element.date)
                 }
-                console.log(event);
-                tempObj.tags.forEach(element2=> {
-                    if(typeof event.target.value !== 'undefined' && typeof element2 !== 'undefined' && event.target.value.toLowerCase() === element2.toLowerCase()) {
+                tempObj.tags.forEach(element2 => {
+                    console.log(this.state.filter);
+                    console.log(element2);
+                    if(typeof this.state.filter !== 'undefined' && typeof tempObj.tags[element2] !== 'undefined' && this.state.filter.toLowerCase() == tempObj.tags[element2].toLowerCase()) {
                         console.log(tempObj);
                         localStorage.setItem(element.key, JSON.stringify(tempObj));
                         tempArr.push(tempObj);
@@ -132,9 +134,11 @@ export class MapContainer extends React.Component {
             this.setState({eventList: tempArr});
         });
     }
- 
 
-
+    handleFilterChange = filter => {
+        console.log(filter.target.value);
+        this.setState({filter: filter.target.value});
+    }
    
     handleChange = address => {
         this.setState({ address });
@@ -197,7 +201,7 @@ export class MapContainer extends React.Component {
                     <div class = "Sesarch">
                        <div class = "Search-inputs">
                            <form class = "Search" onSubmit = {this.eventFilter}>
-                               <input type = "text" placeholder = "Search for event tags"/>
+                               <input type = "text" placeholder = "Search for event tags" onChange = {this.handleFilterChange} value = {this.filter}/>
                                <input class = "submit-btn" type = "submit" value = "submit"></input>
                            </form>
                        </div>
