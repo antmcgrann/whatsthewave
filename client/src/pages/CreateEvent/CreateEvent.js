@@ -19,7 +19,7 @@ import 'semantic-ui-css/semantic.min.css'
 //loadScript('https://maps.googleapis.com/maps/api/js?key=process.env.REACT_APP_API_KEY&libraries=places&callback=initMap');
 
 
-export class EventForm extends React.Component {
+export class CreateEvent extends React.Component {
 
     constructor(props){
         super(props);
@@ -212,4 +212,4 @@ export class EventForm extends React.Component {
 
 export default withRouter(GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
-}) (EventForm));
+}) (CreateEvent));
