@@ -84,8 +84,6 @@ export class EventForm extends React.Component {
       let nam = event.target.name;
       let val = event.target.value;
       this.setState({[nam]: val});
-      console.log("the name is " + this.state.title);
-      console.log("the val is " + this.state.address);
     };
 
     handlePlaceChange = address => {
@@ -100,10 +98,11 @@ export class EventForm extends React.Component {
       if(this.state.address === ''){
         return;
       }
+      console.log("check " + data.target.tags.value);
       let eventDataPkg = {
         title: data.target.title.value,
         creator: data.target.creator.value,
-        tags: data.target.categoryTags.value.split(" "),
+        tags: data.target.tags.value.split(" "),
         capacityfield: data.target.capacityField.value,
         dateField: data.target.dateField.value,
         timeField: data.target.timeField.value,
@@ -125,31 +124,31 @@ export class EventForm extends React.Component {
           <div>
             <Hero/>
             <div class="eventform">
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                 <h1 class="eventform-title">Event Information</h1>
                 <Form.Field>
                     <label>Event Name</label>
-                    <input id="title" placeholder='Event Name' onChange={this.handleChange}/>
+                    <input name="title" placeholder='Enter event name' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Description</label>
-                    <TextArea id="descField" placeholder='Enter event description' onChange={this.handleChange} style={{minHeight: 100}}/>
+                    <TextArea name="descField" placeholder='Enter event description (max 250 chars.)' onChange={this.handleChange} style={{minHeight: 100, fontFamily: `Catamaran`}} maxLength="250"/>
                 </Form.Field>
                 <Form.Field>
                     <label>Tags</label>
-                    <input id="tags" placeholder='Enter tags here' onChange={this.handleChange}/>
+                    <input name="tags" placeholder='Enter tags here' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Maximum Capacity</label>
-                    <input id="capacityField" placeholder='Enter event maximum capacity' onChange={this.handleChange}/>
+                    <input name="capacityField" placeholder='Enter event maximum capacity' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Date</label>
-                    <input id="dateField" placeholder='Enter event date' onChange={this.handleChange}/>
+                    <input name="dateField" placeholder='Enter event date' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Time</label>
-                    <input id="timeField" placeholder='Enter event time' onChange={this.handleChange}/>
+                    <input name="timeField" placeholder='Enter event time' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Event Creator</label>
@@ -157,7 +156,7 @@ export class EventForm extends React.Component {
                 </Form.Field>
                 <Form.Field>
                     <label>Contact Info</label>
-                    <input id="contactInfoField" placeholder='Enter contact info' onChange={this.handleChange}/>
+                    <input name="contactInfoField" placeholder='Enter contact info' onChange={this.handleChange}/>
                 </Form.Field>
                 <Form.Field>
                     <label>Location</label>
@@ -201,7 +200,7 @@ export class EventForm extends React.Component {
                     </PlacesAutocomplete>
                   </Form.Field>
                 
-                <Button type='submit' onClick={this.handleSubmit}><a href="/event-management" class="login-btn">Create Event</a></Button>
+                <Button type='submit'>Create Event</Button>
             </Form>
           </div>
         </div>
