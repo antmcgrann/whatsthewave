@@ -16,8 +16,7 @@ import './Landing.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Button, Header, Icon, Modal } from 'semantic-ui-react';
-import { Resizable } from 'react-resizable';
+import { Button, Header, Icon, Modal, Input } from 'semantic-ui-react';
 
 const containerStyle = {
     position: 'relative',  
@@ -121,7 +120,6 @@ export class MapContainer extends React.Component {
         return (
             <div class='wrapper'>
                 <div class='map-left'>
-                    <Resizable>
                     <div class='map-left-top'>
                         <PlacesAutocomplete
                             value = {this.state.address}
@@ -141,22 +139,17 @@ export class MapContainer extends React.Component {
                                     >
                                     <Header icon='clipboard list' content='Filter By Tags' />
                                     <Modal.Content>
-                                        <p>
-                                        Would you like to sign up for John's BBQ?
-                                        </p>
+                                        <Input placeholder='Enter event tag(s)' style={{width: `100%`}}/>
                                     </Modal.Content>
                                     <Modal.Actions>
-                                        <Button color='red' onClick={() => this.state.handleModal}>
-                                        <Icon name='remove' /> No
-                                        </Button>
-                                        <Button color='green' onClick={() => this.state.handleModal}>
-                                        <Icon name='checkmark' /> Yes
+                                        <Button color='blue' onClick={() => this.state.handleModal}>
+                                        <Icon name='filter'/> Apply Filter
                                         </Button>
                                     </Modal.Actions>
                                     </Modal>
                                     <input style={{fontFamily:`Catamaran`}}
                                     {...getInputProps({
-                                        placeholder: 'Search for nearby events',
+                                        placeholder: 'Search by location',
                                         className: 'location-search-input',
                                     })}
                                     />
@@ -187,7 +180,6 @@ export class MapContainer extends React.Component {
                             )}
                         </PlacesAutocomplete>
                     </div>
-                    </Resizable>
 
                     <div class = "event-cards">
                         {this.state.eventList.length == 1 ? <p>We found 1 event for you</p> : 
