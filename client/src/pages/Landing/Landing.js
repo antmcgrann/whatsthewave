@@ -15,9 +15,8 @@ import axios from 'axios';
 import './Landing.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography'
-
-
+import Typography from '@material-ui/core/Typography';
+import { Button, Header, Icon, Modal, Input } from 'semantic-ui-react';
 
 const containerStyle = {
     position: 'relative',  
@@ -44,14 +43,17 @@ export class MapContainer extends React.Component {
             mapCenter: {
                 lat: 42.7248,
                 lng: -73.6918
-            }
+            },
+            modalOpen: false
         };
+
+        this.handleModal = this.handleModal.bind(this);
     }
 
     componentDidMount() {
         this.props.updateTitle("Landing");
         this.refreshSavedEvents();
-       }
+    }
 
     //Upon component remounting, recieve all events from backend
     refreshSavedEvents = async () => {
@@ -93,9 +95,10 @@ export class MapContainer extends React.Component {
         });
     }
     
-
-
-
+    handleModal = () => {
+        this.setState({open: !this.state.open});
+        console.log("the modal is now " + this.state.open);
+    }
    
     handleChange = address => {
         this.setState({ address });
@@ -117,53 +120,74 @@ export class MapContainer extends React.Component {
         return (
             <div class='wrapper'>
                 <div class='map-left'>
-                    <PlacesAutocomplete
-                        value = {this.state.address}
-                        onChange = {this.handleChange}
-                        onSelect = {this.handleSelect}
-                    >
-                    {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                        <div>
-                            <input style={{fontFamily:`Catamaran`}}
-                            {...getInputProps({
-                                placeholder: 'Search for nearby events',
-                                className: 'location-search-input',
-                            })}
-                            />
-                            <div className="autocomplete-dropdown-container">
-                                {loading && <div>Loading...</div>}
-                                {suggestions.map(suggestion => {
-                                    const className = suggestion.active
-                                    ? 'suggestion-item--active'
-                                    : 'suggestion-item';
-                                    // inline style for demonstration purpose
-                                    const style = suggestion.active
-                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                    return (
-                                    <div
-                                        {...getSuggestionItemProps(suggestion, {
-                                        className,
-                                        style,
-                                        })}
+                    <div class='map-left-top'>
+                        <PlacesAutocomplete
+                            value = {this.state.address}
+                            onChange = {this.handleChange}
+                            onSelect = {this.handleSelect}
+                        >
+                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                            <div style={{display:`flex`, flexDirection: `column`}}>
+                                <div style={{display:`flex`, alignItems: `center`, padding: `0.75rem`}}>
+                                    <Modal 
+                                    size='mini'
+                                    closeIcon
+                                    open={this.state.open}
+                                    trigger={<Button icon><Icon name='bars' /></Button>}
+                                    onClose={() => this.state.handleModal}
+                                    onOpen={() => this.state.handleModal}
                                     >
-                                        <span>{suggestion.description}</span>
-                                    </div>
-                                    );
-                                })}
+                                    <Header icon='clipboard list' content='Filter By Tags' />
+                                    <Modal.Content>
+                                        <Input placeholder='Enter event tag(s)' style={{width: `100%`}}/>
+                                    </Modal.Content>
+                                    <Modal.Actions>
+                                        <Button color='blue' onClick={() => this.state.handleModal}>
+                                        <Icon name='filter'/> Apply Filter
+                                        </Button>
+                                    </Modal.Actions>
+                                    </Modal>
+                                    <input style={{fontFamily:`Catamaran`}}
+                                    {...getInputProps({
+                                        placeholder: 'Search by location',
+                                        className: 'location-search-input',
+                                    })}
+                                    />
+                                </div>
+                                <div className="autocomplete-dropdown-container">
+                                    {loading && <div>Loading...</div>}
+                                    {suggestions.map(suggestion => {
+                                        const className = suggestion.active
+                                        ? 'suggestion-item--active'
+                                        : 'suggestion-item';
+                                        // inline style for demonstration purpose
+                                        const style = suggestion.active
+                                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                        return (
+                                        <div
+                                            {...getSuggestionItemProps(suggestion, {
+                                            className,
+                                            style,
+                                            })}
+                                        >
+                                            <span>{suggestion.description}</span>
+                                        </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                        )}
-                    </PlacesAutocomplete>
-                    <div>
+                            )}
+                        </PlacesAutocomplete>
+                    </div>
+
+                    <div class = "event-cards">
                         {this.state.eventList.length == 1 ? <p>We found 1 event for you</p> : 
                             <p>We found {this.state.eventList.length} events for you</p>}
-                    </div>
-                    <div class = "Event-cards">
                         {this.state.eventList.map((item, i) => {
                             console.log(item);
                             return (
-                                <div class = "Indv-card">
+                                <div class = "indv-card">
                                     <Card>
                                         <CardContent>
                                             <Typography class = "title" variant = "h4">

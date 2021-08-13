@@ -25,7 +25,6 @@ const eventData = [
                 <Card.Content extra>
                     <div className='ui two buttons'>
                     <Button basic color='blue'>Manage</Button>
-                    <Button basic color='red'>Delete</Button>
                     </div>
                 </Card.Content>
             </Card>

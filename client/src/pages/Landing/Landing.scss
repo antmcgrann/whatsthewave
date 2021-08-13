@@ -5,19 +5,22 @@
 }
 
 .map-left {
-    width: 25%;
+    width: 30%;
     //color: #9c252570;
     background-color: #f2f2f2;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
+.event-count-label {
+    display: block;
+}
+
 .location-search-input {
     border-radius: 3rem;
     padding: .75rem 2rem;
-    width: 90%;
-    display: flex;
-    margin: .75rem auto;
+    width: 80%;
+    margin: .5rem auto;
     font-family: 'Catamaran';
     /*font-size: var(--medium-font-size);*/
     font-size: 18px;
@@ -25,7 +28,7 @@
 }
 
 .map-right {
-    width: 75%;
+    width: 70%;
     grid-column: 1;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -36,24 +39,21 @@
     grid-column: 2/5;
 }
 
-.Event-cards {
+.event-cards {
     width: auto;
     display: flex;
     flex-direction: column;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 40px;
+    padding: 0 1rem 1rem 1rem;
 }
 
-.Indv-card {
+.indv-card {
     padding: .2rem;
     box-shadow: 10px, 20px, 5px; 
     border-radius: 30px;
     padding-bottom: 10px;
 }
 
-.Indv-cards {
+.indv-cards {
     border-radius: 100px;
     box-shadow: 10px, 20px, 5px; 
 }

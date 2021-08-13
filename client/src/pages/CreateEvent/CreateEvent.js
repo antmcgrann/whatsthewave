@@ -8,7 +8,10 @@ import PlacesAutocomplete ,{
 //import Autocomplete from "react-google-autocomplete";
 import { withRouter } from 'react-router-dom';
 import "./CreateEvent.scss";
+import Hero from '../../components/Hero2/Hero2';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
+import { Button, Checkbox, Form, TextArea } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
 
 //import "./places.html";
 
@@ -16,7 +19,7 @@ import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 //loadScript('https://maps.googleapis.com/maps/api/js?key=process.env.REACT_APP_API_KEY&libraries=places&callback=initMap');
 
 
-export class EventForm extends React.Component {
+export class CreateEvent extends React.Component {
 
     constructor(props){
         super(props);
@@ -44,7 +47,7 @@ export class EventForm extends React.Component {
     componentDidMount = () =>{
       //this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
       //this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
-      this.props.updateTitle("Event Management");
+      this.props.updateTitle("Create Event");
     };
 /*
     eventUniqueness = async ({ eventObj }) => {
@@ -95,10 +98,11 @@ export class EventForm extends React.Component {
       if(this.state.address === ''){
         return;
       }
+      console.log("check " + data.target.tags.value);
       let eventDataPkg = {
         title: data.target.title.value,
         creator: data.target.creator.value,
-        tags: data.target.categoryTags.value.split(" "),
+        tags: data.target.tags.value.split(" "),
         capacityfield: data.target.capacityField.value,
         dateField: data.target.dateField.value,
         timeField: data.target.timeField.value,
@@ -118,36 +122,46 @@ export class EventForm extends React.Component {
     render() {
       // Need UI
         return (
-          
-          <div id = "eventform" align = "middle" class = "row">
-          <form onSubmit={this.handleSubmit}>
-          <h1>Event Creation</h1>
-          <fieldset>
-          <legend>Event Information</legend>
-          <p>
-            <label>Enter Event Title :<strong><abbr title="This field is mandatory" aria-label="required">*</abbr></strong></label>
-            <br/>
-              <input
-                type='text'
-                id='title'
-                onChange={this.handleChange}
-              />
-          </p>
-          
-          <p>
-          <label for="categoryTags">Event tags (separate by space)</label>
-            <br/>
-            <textarea id="categoryTags" name="text" maxlength="140" rows="2" onChange={this.handleChange}></textarea>
-          </p>
-          <p>
-            <label for="descField">Event description</label>
-            <br/>
-            <textarea id="descField" name="msg" maxlength="280" rows="5" onChange={this.handleChange}></textarea>
-          </p>
-          </fieldset>
-          <fieldset>
-          <legend>Google Places Search</legend>
-          <PlacesAutocomplete
+          <div>
+            <Hero/>
+            <div class="eventform">
+            <Form onSubmit={this.handleSubmit}>
+                <h1 class="eventform-title">Event Information</h1>
+                <Form.Field>
+                    <label>Event Name</label>
+                    <input name="title" placeholder='Enter event name' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Description</label>
+                    <TextArea name="descField" placeholder='Enter event description (max 250 chars.)' onChange={this.handleChange} style={{minHeight: 100, fontFamily: `Catamaran`}} maxLength="250"/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Tags</label>
+                    <input name="tags" placeholder='Enter tags here' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Maximum Capacity</label>
+                    <input name="capacityField" placeholder='Enter event maximum capacity' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Date</label>
+                    <input name="dateField" placeholder='Enter event date' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Time</label>
+                    <input name="timeField" placeholder='Enter event time' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Event Creator</label>
+                    <input name="creator" placeholder='Enter event creator' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Contact Info</label>
+                    <input name="contactInfoField" placeholder='Enter contact info' onChange={this.handleChange}/>
+                </Form.Field>
+                <Form.Field>
+                    <label>Location</label>
+                  <PlacesAutocomplete
                         value = {this.state.address}
                         onChange = {this.handlePlaceChange}
                         onSelect = {this.handleSelect}
@@ -185,46 +199,12 @@ export class EventForm extends React.Component {
                         </div>
                         )}
                     </PlacesAutocomplete>
-          </fieldset>
-          <fieldset>
-          <legend>Additional Info</legend>
-          <p>Enter capacity: </p>
-          <input
-            type='text'
-            id='capacityField'
-            onChange={this.handleChange}
-          />
-          <p>Enter date: </p>
-          <input
-            type='text'
-            id='dateField'
-            onChange={this.handleChange}
-          />
-          <p>Enter time: </p>
-          <input
-            type='text'
-            id='timeField'
-            onChange={this.handleChange}
-          />
-          <p>Creator name: </p>
-          <input
-            type='text'
-            id='creator'
-            onChange={this.handleChange}
-          />
-          <p>Enter contact info you want to provide: </p>
-          <input
-            type='text'
-            id='contactInfoField'
-            onChange={this.handleChange}
-          />
-          </fieldset>
-          <br/>
-          <br/>
-          <input type='submit' />
-          </form>
+                  </Form.Field>
+                
+                <Button type='submit'>Create Event</Button>
+            </Form>
           </div>
-          
+        </div>
 
         );
         
@@ -233,4 +213,4 @@ export class EventForm extends React.Component {
 
 export default withRouter(GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
-}) (EventForm));
+}) (CreateEvent));

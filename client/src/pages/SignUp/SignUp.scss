@@ -1,4 +1,4 @@
-.login {
+.signup {
     &-left {
         width: 40%;
         height: 100vh;
@@ -32,21 +32,10 @@
             border-radius: 1rem;
         }
 
-        .ui.button .login-btn {
+        .ui.button .signup-btn {
             display: block;
             padding: 0.25rem 3rem;
         }
-    }
-
-    &-no-acct {
-        display: block;
-        margin-bottom: 1rem;
-        color: var(--theme-color);
-        font-weight: 100;
-    }
-
-    &-no-acct, &-no-acct:hover {
-        color: var(--theme-color);
     }
     
     &-container {

@@ -6,6 +6,7 @@ import Landing from './pages/Landing/Landing';
 import CreateEvent from './pages/CreateEvent/CreateEvent'
 import EventManagement from './pages/EventManagement/EventManagement'
 import LogIn from './pages/LogIn/LogIn';
+import SignUp from './pages/SignUp/SignUp';
 
 import './styles/main.scss';
 
@@ -33,6 +34,9 @@ export default class App extends React.Component {
                     </Route>
                     <Route exact path="/login">
                         <LogIn updateTitle={this.updateTitle}/>
+                    </Route>
+                    <Route exact path="/signup">
+                        <SignUp updateTitle={this.updateTitle}/>
                     </Route>
                     <Route exact path="/event-management/create">
                         <CreateEvent updateTitle={this.updateTitle}/>
