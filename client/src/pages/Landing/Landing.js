@@ -16,7 +16,8 @@ import './Landing.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Button, Header, Icon, Modal, Input } from 'semantic-ui-react';
+import { Button, Header, Icon, Input } from 'semantic-ui-react';
+import Modal from '../../components/Modal/Modal';
 
 const containerStyle = {
     position: 'relative',  
@@ -119,6 +120,7 @@ export class MapContainer extends React.Component {
     render() {
         return (
             <div class='wrapper'>
+                <Modal/>
                 <div class='map-left'>
                     <div class='map-left-top'>
                         <PlacesAutocomplete
@@ -129,24 +131,6 @@ export class MapContainer extends React.Component {
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div style={{display:`flex`, flexDirection: `column`}}>
                                 <div style={{display:`flex`, alignItems: `center`, padding: `0.75rem`}}>
-                                    <Modal 
-                                    size='mini'
-                                    closeIcon
-                                    open={this.state.open}
-                                    trigger={<Button icon><Icon name='bars' /></Button>}
-                                    onClose={() => this.state.handleModal}
-                                    onOpen={() => this.state.handleModal}
-                                    >
-                                    <Header icon='clipboard list' content='Filter By Tags' />
-                                    <Modal.Content>
-                                        <Input placeholder='Enter event tag(s)' style={{width: `100%`}}/>
-                                    </Modal.Content>
-                                    <Modal.Actions>
-                                        <Button color='blue' onClick={() => this.state.handleModal}>
-                                        <Icon name='filter'/> Apply Filter
-                                        </Button>
-                                    </Modal.Actions>
-                                    </Modal>
                                     <input style={{fontFamily:`Catamaran`}}
                                     {...getInputProps({
                                         placeholder: 'Search by location',
