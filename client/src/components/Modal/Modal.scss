@@ -56,12 +56,24 @@
     margin-bottom: 1rem;
 }
 
-.search-label {
+.modal-guts .search-label {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 100;
 }
 
-.modal-guts .search {
-    margin-bottom: 1rem;
+.modal-guts .apply-button {
+    border: none;
+    background: #50A1A6;
+    color: white;
+    padding: 1rem 4rem;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+#modal-search {
+    margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .modal-topbar .close-button {
@@ -69,7 +81,7 @@
     width: var(--header-height);
     height: var(--header-height);
     border: none;
-    background: #3f6474;
+    background: none;
     border-radius: 0 1.25rem 0 0;
     color: white;
     position: absolute;

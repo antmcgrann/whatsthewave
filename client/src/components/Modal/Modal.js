@@ -25,8 +25,8 @@ export default class Modal extends React.Component {
                             <Form.Field>
                                 <div class="modal-guts">
                                     <label for="search" class="search-label">Enter event tags</label>
-                                    <input id="search" name="search" type="text" class="search"></input>
-                                    <button>Apply Filter</button>
+                                    <input id="search" name="search" type="text" class="search" id="modal-search" placeholder="Event tags (separated by space)"></input>
+                                    <button class="apply-button">Apply Filter</button>
                                 </div>
                             </Form.Field>
                         </Form>

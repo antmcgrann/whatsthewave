@@ -120,7 +120,7 @@ export class MapContainer extends React.Component {
     render() {
         return (
             <div class='wrapper'>
-                <Modal/>
+                {this.state.modalOpen && <Modal/>}
                 <div class='map-left'>
                     <div class='map-left-top'>
                         <PlacesAutocomplete
