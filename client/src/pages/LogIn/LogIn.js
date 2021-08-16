@@ -15,6 +15,7 @@ export default class LogIn extends React.Component {
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.updatePredicate = this.updatePredicate.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
         this.updatePredicate();
@@ -42,6 +43,15 @@ export default class LogIn extends React.Component {
     componentDidMount() {
         this.props.updateTitle("Log In");
     }
+
+    handleSubmit = async e =>{
+        e.preventDefault();
+        //In here should send a GET axios request and recieve a response
+        //Query if username exists with password
+        //If user does not exist, send back user is wrong
+        //If finds matching user, check password
+        //Return whether account login is correct + other error handling
+    }
    
     render() {
         const isDesktop = this.state.isDesktop;
@@ -55,7 +65,7 @@ export default class LogIn extends React.Component {
                         <h1 class="login-title">Log In</h1>
                         <h3 class="login-slogan">Find Your Wave</h3>
 
-                        <Form>
+                        <Form onSubmit={this.handleSubmit}>
                             <Form.Field>
                                 <label>Username</label>
                                 <input placeholder='Username' onChange={this.handleUsernameChange}/>

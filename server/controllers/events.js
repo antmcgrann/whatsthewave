@@ -48,6 +48,7 @@ export const editEvent = async (req,res) => {
   
 }
 
+//WIP
 export const getEventUnique = async (req,res) => {
   let event = req.body,
   tempBool = true,
@@ -67,5 +68,25 @@ export const getEventUnique = async (req,res) => {
   } catch(error){
     res.status(410).json({ message: error.message });
   }
+
+}
+
+//WIP
+//Store account id in list
+//Req should have event id, and account id
+//Needs testing
+export const rsvpEvent = async (req,res) => {
+  const request = req.body;
+  const filter = { _id: request.event_id };
+  const update = { rsvp: request.acccount_id }; 
+  let doc = await EventData.findOneAndUpdate(filter, update, {
+    new: true
+  });
+  try{
+    res.status(203);
+  }catch(error){
+    res.status(410);
+  }
+  
 
 }

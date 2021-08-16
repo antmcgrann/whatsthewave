@@ -33,11 +33,7 @@ export class CreateEvent extends React.Component {
             timeField: '',
             descField: '',
             contactInfoField: '',
-            //Following need to be calculated
-            //WIP
-            coords: {},
-            key: Number
-            
+            coords: {}
         }
         //this.handlePlaceSelect = this.handlePlaceSelect.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,8 +41,6 @@ export class CreateEvent extends React.Component {
     }
 
     componentDidMount = () =>{
-      //this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
-      //this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
       this.props.updateTitle("Create Event");
     };
 /*
@@ -92,7 +86,6 @@ export class CreateEvent extends React.Component {
 
 
     handleSubmit = async data => {
-      // Generate a key for the event and add
       data.preventDefault();
       //Prob want to check each field for validity
       if(this.state.address === ''){
