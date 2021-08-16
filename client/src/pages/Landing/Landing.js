@@ -18,6 +18,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Button, Header, Icon, Input } from 'semantic-ui-react';
 import Modal from '../../components/Modal/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
+
 
 const containerStyle = {
     position: 'relative',  
@@ -45,7 +48,8 @@ export class MapContainer extends React.Component {
                 lat: 42.7248,
                 lng: -73.6918
             },
-            modalOpen: false
+            modalOpen: false,
+            filterTags: []
         };
 
         this.handleModal = this.handleModal.bind(this);
@@ -97,8 +101,15 @@ export class MapContainer extends React.Component {
     }
     
     handleModal = () => {
-        this.setState({open: !this.state.open});
-        console.log("the modal is now " + this.state.open);
+        this.setState({modalOpen: !this.state.modalOpen});
+        console.log("the modal is now " + this.state.modalOpen);
+    }
+
+    handleFilterTags = (tagsStr) => {
+        console.log("tagsStr is " + tagsStr);
+        console.log(tagsStr.split(' '));
+        this.setState({filterTags: [...tagsStr.split(' ')]});
+        console.log("the splti is " + this.state.filterTags);
     }
    
     handleChange = address => {
@@ -120,7 +131,7 @@ export class MapContainer extends React.Component {
     render() {
         return (
             <div class='wrapper'>
-                {this.state.modalOpen && <Modal/>}
+                {this.state.modalOpen && <Modal modalOpen={this.state.modalOpen} handleModal={this.handleModal} handleFilterTags={this.handleFilterTags}/>}
                 <div class='map-left'>
                     <div class='map-left-top'>
                         <PlacesAutocomplete
@@ -130,7 +141,10 @@ export class MapContainer extends React.Component {
                         >
                         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                             <div style={{display:`flex`, flexDirection: `column`}}>
-                                <div style={{display:`flex`, alignItems: `center`, padding: `0.75rem`}}>
+                                <div style={{display:`flex`, alignItems: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
+                                    <button class="menu-button" onClick={this.handleModal}>
+                                        <FontAwesomeIcon icon={faBars} class="menu-icon"/>
+                                    </button>
                                     <input style={{fontFamily:`Catamaran`}}
                                     {...getInputProps({
                                         placeholder: 'Search by location',

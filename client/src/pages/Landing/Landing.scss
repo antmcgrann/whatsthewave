@@ -16,6 +16,18 @@
     display: block;
 }
 
+.menu-button {
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.menu-icon {
+    height: 2rem;
+    width: 2rem;
+    color: #438AA9;
+}
+
 .location-search-input {
     border-radius: 3rem;
     padding: .75rem 2rem;
