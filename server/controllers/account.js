@@ -23,7 +23,19 @@ export const createAccount = async (req, res) => {
 }
 
 //Needs to be used to see if a account username is unique
+//Send username, recieve yes or no
 export const getOneAccount = async (req,res) => {
+  //unique is true
+  let uniqueBool = true;
+  if(await AccountData.findOne({username: req.body.username}).exec()){
+    //Account exists
+    uniqueBool = false;
+  }
+  try{
+    res.status(200).json(uniqueBool);
+  }catch(error){
+    res.status(400).json({ message: error.message});
+  }
 }
 
 export const logInAccount = async (req,res) => {

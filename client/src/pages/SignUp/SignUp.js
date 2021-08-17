@@ -62,6 +62,12 @@ export class SignUp extends React.Component {
       //ToDo
       //Check if username already exists and respond accordingly
       e.preventDefault();
+      let uniqueUser = true;
+      await axios.get('/accounts/getOneAccount',{username: this.state.username})
+        .then(response => uniqueUser = response);
+      if(!uniqueUser){
+        //Account name is not unique
+      }
       let accountDataPkg = {
         username: this.state.username,
         password: this.state.password,
