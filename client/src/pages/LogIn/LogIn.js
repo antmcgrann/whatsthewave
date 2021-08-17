@@ -38,7 +38,7 @@ export default class LogIn extends React.Component {
     }
 
     handlePasswordChange(e){
-        this.setState({ username: e.target.value});
+        this.setState({ password: e.target.value});
     }
 
     componentDidMount() {
@@ -57,13 +57,15 @@ export default class LogIn extends React.Component {
         await axios.post('/accounts/logInAccount',
         {user: this.state.username, pass: this.state.password})
             .then(response => responsePkg = response.data);
-        if(responsePkg.user == false){
+        if(responsePkg.userValid === false){
             //User does not exist
             //Add some front end changes to notify user
             console.log("bad user");
             return;
         }
-        if(responsePkg.pass == true){
+        console.log(responsePkg);
+
+        if(responsePkg.passValid === true){
             //log in success
             console.log("Log in success");
         }

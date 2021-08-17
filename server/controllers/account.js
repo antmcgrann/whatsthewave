@@ -43,13 +43,26 @@ export const logInAccount = async (req,res) => {
   pass = req.body.pass,
   userExists = true,
   passCorrect = false;
-  const acc = await AccountData.findOne({username: req.body.user});
-  if(acc === null){
+  console.log(req.body.user);
+  let acc = await AccountData.findOne({username: req.body.user})
+    .then(result => {
+      if(result){
+        //found
+        console.log("Found");
+      } else {
+        //not found
+        console.log("Not found");
+      }
+      return result;
+    })
+    .catch(err => console("Failed to find document"))
+  console.log(acc);
+  if(acc == null){
     //account does not exist
     userExists = false;
   }
   else{
-    if(acc.password === pass){
+    if(acc.password == pass){
       passCorrect = true;
     }
   }
