@@ -4,7 +4,6 @@ import AccountData from '../models/accountData.js';
 export const getAccounts = async (  req, res  ) => {
     try{
       const accountsData = await AccountData.find();
-      console.log(accountData);
       res.status(200).json(accountsData);
       }  catch (error)  {
       res.status(404).json({ message: error.message});
@@ -24,10 +23,11 @@ export const createAccount = async (req, res) => {
 
 //Needs to be used to see if a account username is unique
 //Send username, recieve yes or no
-export const getOneAccount = async (req,res) => {
+export const checkUser = async (req,res) => {
   //unique is true
   let uniqueBool = true;
-  if(await AccountData.findOne({username: req.body.username}).exec()){
+  console.log(req.body);
+  if(await AccountData.findOne({username: String(req.body.username)}).exec() != null){
     //Account exists
     uniqueBool = false;
   }
@@ -39,8 +39,29 @@ export const getOneAccount = async (req,res) => {
 }
 
 export const logInAccount = async (req,res) => {
-  let login = req.body;
-  let acc = await AccountData.findOne(req.body.user);
+  let user = req.body.user,
+  pass = req.body.pass,
+  userExists = true,
+  passCorrect = false;
+  const acc = await AccountData.findOne({username: req.body.user});
+  if(acc === null){
+    //account does not exist
+    userExists = false;
+  }
+  else{
+    if(acc.password === pass){
+      passCorrect = true;
+    }
+  }
+  let responsePkg = {
+    userValid: userExists,
+    passValid: passCorrect
+  }
+  try{
+    res.status(202).json(responsePkg);
+  }catch(error){
+    res.status(405).json({ message: error.message});
+  }
   //WIP
 }
 

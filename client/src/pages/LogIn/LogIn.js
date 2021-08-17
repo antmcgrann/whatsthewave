@@ -2,6 +2,7 @@ import React from 'react';
 
 import './LogIn.scss';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
+import axios from 'axios';
 
 export default class LogIn extends React.Component {
     constructor(props) {
@@ -51,6 +52,24 @@ export default class LogIn extends React.Component {
         //If user does not exist, send back user is wrong
         //If finds matching user, check password
         //Return whether account login is correct + other error handling
+        let userExists = true,
+        responsePkg = {};
+        await axios.post('/accounts/logInAccount',
+        {user: this.state.username, pass: this.state.password})
+            .then(response => responsePkg = response.data);
+        if(responsePkg.user == false){
+            //User does not exist
+            //Add some front end changes to notify user
+            console.log("bad user");
+            return;
+        }
+        if(responsePkg.pass == true){
+            //log in success
+            console.log("Log in success");
+        }
+        else{
+            console.log("Bad pass");
+        }
     }
    
     render() {

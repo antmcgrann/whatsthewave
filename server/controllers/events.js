@@ -27,9 +27,7 @@ export const createEvent = async (req, res) => {
       res.status(202).json({message: "Event exists in database"});
     }
     */
-    console.log(req.body);
     const newEvent = new EventData(req.body);
-    console.log(newEvent);
     try  {
       await newEvent.save();
       res.status(201).json(newEvent);

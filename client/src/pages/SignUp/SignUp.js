@@ -59,14 +59,15 @@ export class SignUp extends React.Component {
     }
 
     handleSubmit = async e => {
-      //ToDo
-      //Check if username already exists and respond accordingly
       e.preventDefault();
       let uniqueUser = true;
-      await axios.get('/accounts/getOneAccount',{username: this.state.username})
-        .then(response => uniqueUser = response);
+      console.log(this.state.username);
+      //This works
+      await axios.post('/accounts/checkUser',{username: String(this.state.username)})
+        .then(response =>  uniqueUser = response.data);
       if(!uniqueUser){
-        //Account name is not unique
+        console.log("This username is not unique");
+        return;
       }
       let accountDataPkg = {
         username: this.state.username,
