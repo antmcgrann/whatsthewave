@@ -125,7 +125,7 @@ export class CreateEvent extends React.Component {
                 </Form.Field>
                 <Form.Field>
                     <label>Description</label>
-                    <TextArea name="descField" placeholder='Enter event description (max 250 chars.)' onChange={this.handleChange} style={{minHeight: 100, fontFamily: `Catamaran`}} maxLength="250"/>
+                    <TextArea name="descField" placeholder='Enter event description (max 250 chars.)' onChange={this.handleChange} style={{minHeight: 100}} maxLength="250"/>
                 </Form.Field>
                 <Form.Field>
                     <label>Tags</label>
