@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from 'react-redux';
+
 import './eventcard.css';
+
 
 
 const EventCard = (title, tags, lat, lng, date, time, desc, contact) => {

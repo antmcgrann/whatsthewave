@@ -22,6 +22,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
+
 const containerStyle = {
     position: 'relative',  
     width: '100%',
@@ -151,6 +152,16 @@ export class MapContainer extends React.Component {
             .catch(error => console.error('Error', error));
     };
 
+    handleSubmit = async data => {
+      data.preventDefault();
+      let accountDataPkg = {
+        RSVP: data.target.title.value
+      }
+      await axios.post('accounts/createAccount', accountDataPkg)
+        .then(response => console.log(response));
+      this.props.history.push('/');
+    };
+
     render() {
         if (this.state.filterTags.length === 0){
             return (
@@ -237,6 +248,7 @@ export class MapContainer extends React.Component {
                                                         <b>Contact: </b> {item.contactInfoField}<br/>
                                                     </Typography>
                                                 </div>
+                                                <Button type='RSVP'>RSVP</Button>
                                             </CardContent>
                                         </Card>
                                     </div>
