@@ -28,9 +28,20 @@
 }
 
 .modal-header .modal-tags-icon {
-    height: 2rem;
-    width: 2rem;
-    margin-right: 1rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    color: white;
+}
+
+.modal-header .modal-tags-icon-background {
+    background: #4d8baa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    margin-right: .5rem;
 }
 
 .modal-container {

@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button, Header, Icon, Input } from 'semantic-ui-react';
 import Modal from '../../components/Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faTags } from '@fortawesome/free-solid-svg-icons';
 
 
 const containerStyle = {
@@ -165,9 +165,9 @@ export class MapContainer extends React.Component {
                             >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <div style={{display:`flex`, flexDirection: `column`}}>
-                                    <div style={{display:`flex`, alignItems: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
+                                    <div style={{display:`flex`, alignItems: `center`, justifyContent: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
                                         <button class="menu-button" onClick={this.handleModal}>
-                                            <FontAwesomeIcon icon={faBars} class="menu-icon"/>
+                                            <FontAwesomeIcon icon={faTags} class="menu-icon"/>
                                         </button>
                                         <input style={{fontFamily:`Catamaran`}}
                                         {...getInputProps({
@@ -298,9 +298,9 @@ export class MapContainer extends React.Component {
                             >
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <div style={{display:`flex`, flexDirection: `column`}}>
-                                    <div style={{display:`flex`, alignItems: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
+                                    <div style={{display:`flex`, alignItems: `center`, justifyContent: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
                                         <button class="menu-button" onClick={this.handleModal}>
-                                            <FontAwesomeIcon icon={faBars} class="menu-icon"/>
+                                            <FontAwesomeIcon icon={faTags} class="menu-icon"/>
                                         </button>
                                         <input style={{fontFamily:`Catamaran`}}
                                         {...getInputProps({

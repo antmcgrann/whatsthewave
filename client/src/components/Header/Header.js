@@ -1,11 +1,17 @@
 import React from 'react';
 import './Header.scss';
+import circleLogo from '../../images/logo-circle.png';
 
 const Header = () => {
     return (
         <header id="header">
             <nav class="nav">
-                <a href="/" class="nav-logo">What's The Wave</a>
+                <div class="nav-logo">
+                    <a href="/">
+                        <img class="nav-logo-img" src={circleLogo}/>
+                    </a>
+                    <a href="/" class="nav-logo-text">What's The Wave</a>
+                </div>
 
                 <div class="nav-menu">
                     <ul class="nav-list">

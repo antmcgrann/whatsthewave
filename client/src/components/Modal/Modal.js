@@ -40,7 +40,9 @@ export default class Modal extends React.Component {
                         <div class="modal-container">
                             <Form onSubmit={this.handleSubmit}>
                                 <div class="modal-header">
-                                    <FontAwesomeIcon icon={faTags} class="modal-tags-icon"/>
+                                    <span class="modal-tags-icon-background">
+                                        <FontAwesomeIcon icon={faTags} class="modal-tags-icon"/>
+                                    </span>
                                     <h1 class="modal-title">Filter By Event Tags</h1>
                                 </div>
                                 <Form.Field>

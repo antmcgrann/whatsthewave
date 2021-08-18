@@ -17,6 +17,17 @@
 }
 
 .nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo-img {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.nav-logo-text {
     color: var(--light-text);
     font-weight: bold;
     font-size: var(--big-font-size);
