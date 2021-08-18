@@ -78,7 +78,8 @@ export class MapContainer extends React.Component {
             let tempArr = [];
             res.data.forEach(element => {
                 let tempObj = {
-                    key: parseInt(element.key),
+                    //unique id pulled from db
+                    id: String(element._id),
                     title: String(element.title),
                     latLng: element.latLng,
                     lat: Number(element.latLng.lat),
@@ -155,9 +156,12 @@ export class MapContainer extends React.Component {
     handleSubmit = async data => {
       data.preventDefault();
       let accountDataPkg = {
-        RSVP: data.target.title.value
+        // This is the account "will" on the db
+        accID: "611bd2c35559631aa4b67542",
+        //unique event id
+        eventID: data.target.value.id
       }
-      await axios.post('accounts/createAccount', accountDataPkg)
+      await axios.post('accounts/addEventToAccount', accountDataPkg)
         .then(response => console.log(response));
       this.props.history.push('/');
     };
