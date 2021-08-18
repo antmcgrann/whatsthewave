@@ -337,8 +337,8 @@ export class MapContainer extends React.Component {
                         </div>
     
                         <div class = "event-cards">
-                            {this.state.filteredEventList.length == 1 ? <p>We found 1 event for you</p> : 
-                                <p>We found {this.state.filteredEventList.length} events for you</p>}
+                            {this.state.filteredEventList.length == 1 ? <p>We found 1 event related to <b>{this.state.filterTags.join(", ")}</b> for you</p> : 
+                                <p>We found {this.state.filteredEventList.length} events related to <b>{this.state.filterTags.join(", ")}</b> for you</p>}
                             {this.state.filteredEventList.map((item, i) => {
                                 console.log(item);
                                 return (
