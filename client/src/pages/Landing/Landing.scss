@@ -31,7 +31,7 @@
 .event-cards .cancel-button {
     border: none;
     max-width: 140px;
-    background: #438AA9;
+    background: var(--theme-color);
     border-radius: 1.5rem;
     padding: .5rem 1rem .5rem 1rem;
     color: var(--light-text);

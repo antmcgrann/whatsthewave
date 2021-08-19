@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './LogIn.scss';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Checkbox, Form, Input } from 'semantic-ui-react';
 import axios from 'axios';
 
 export default class LogIn extends React.Component {
@@ -79,21 +79,18 @@ export default class LogIn extends React.Component {
         console.log("isDesktop" + isDesktop);
 
         return (
-            <div class="login-container">
-                <div class="login-left"></div>
-                <div class="login-right">
-                    <div class="login-right-container">
+            <div class="login">
+                <div class="login-card">
+                    <div class="login-card-container">
                         <h1 class="login-title">Log In</h1>
                         <h3 class="login-slogan">Find Your Wave</h3>
 
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Field>
-                                <label>Username</label>
-                                <input placeholder='Username' onChange={this.handleUsernameChange}/>
+                                <Input icon="user" iconPosition="left" placeholder='Username' onChange={this.handleUsernameChange}/>
                             </Form.Field>
                             <Form.Field>
-                                <label>Password</label>
-                                <input type='password' placeholder='Password' onChange={this.handlePasswordChange} />
+                                <Input icon="key" iconPosition="left" type='password' placeholder='Password' onChange={this.handlePasswordChange} />
                             </Form.Field>
                             <a class="login-no-acct" href="/signup">Don't have an account? Sign up</a>
                             <Button type='submit'><a href="/event-management" class="login-btn">Log In</a></Button>
