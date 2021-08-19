@@ -55,7 +55,7 @@ export const logInAccount = async (req,res) => {
       }
       return result;
     })
-    .catch(err => console("Failed to find document"))
+    .catch(err => console.log("Failed to find document"));
   console.log(acc);
   if(acc == null){
     //account does not exist
@@ -75,11 +75,28 @@ export const logInAccount = async (req,res) => {
   }catch(error){
     res.status(405).json({ message: error.message});
   }
-  //WIP
 }
 
 //Add event id to account
 //Req should say whether it is the creator or rsvp
 export const addEventToAccount = async (req,res) => {
 
+}
+//Send account id, get all accounts details
+export const getOneAccount = async (req,res) => {
+  let acc = await AccountData.findById(req.body.id)
+    .then(result => {
+      if(result){
+        console.log("Account exists");
+      }
+      else{
+        console.log("Account does not exist");
+      }
+    })
+    .catch(err => console.log({message: error.message}));
+  try{
+    res.status(201).json(acc);
+  }catch(error){
+    res.status(401).json({error: error.message});
+  }
 }

@@ -5,7 +5,8 @@ export class AccountInfoContainer extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            account = {}
+            account = {},
+            account_id = ''
         }
     }
 
@@ -14,9 +15,10 @@ export class AccountInfoContainer extends React.Component{
     }
 
     getAccount = () => {
-        axios.get('/getOneAccount')
-        .then(response => {
-            //store in state
-        })
+        axios.get('/accounts/getOneAccount',
+        {params: {ID: account_id}})
+            .then(response => {
+                //store in state
+            })
     }
 }
