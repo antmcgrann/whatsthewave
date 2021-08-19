@@ -22,6 +22,7 @@ export default class Modal extends React.Component {
         console.log("tagsStr: " + this.state.tagsStr);
         console.log("props: " + this.props);
         this.props.handleFilterTags(this.state.tagsStr);
+        this.props.handleModal();
     }
 
     handleChange = (e) => {

@@ -19,7 +19,7 @@ import Typography from '@material-ui/core/Typography';
 import { Button, Header, Icon, Input } from 'semantic-ui-react';
 import Modal from '../../components/Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTags } from '@fortawesome/free-solid-svg-icons';
+import { faTags, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 const containerStyle = {
@@ -111,6 +111,10 @@ export class MapContainer extends React.Component {
         console.log("the split string is " + this.state.filterTags);
     }
 
+    handleClear = () => {
+        this.setState({filterTags: []});
+    }
+
     handleFilterTags = (tagsStr) => {
         //console.log("tagsStr is " + tagsStr);
         const arr = tagsStr.split(' ');
@@ -166,8 +170,8 @@ export class MapContainer extends React.Component {
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <div style={{display:`flex`, flexDirection: `column`}}>
                                     <div style={{display:`flex`, alignItems: `center`, justifyContent: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
-                                        <button class="menu-button" onClick={this.handleModal}>
-                                            <FontAwesomeIcon icon={faTags} class="menu-icon"/>
+                                        <button class="tags-button" onClick={this.handleModal}>
+                                            <FontAwesomeIcon icon={faTags} class="tags-icon"/>
                                         </button>
                                         <input style={{fontFamily:`Catamaran`}}
                                         {...getInputProps({
@@ -299,8 +303,8 @@ export class MapContainer extends React.Component {
                             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                 <div style={{display:`flex`, flexDirection: `column`}}>
                                     <div style={{display:`flex`, alignItems: `center`, justifyContent: `center`, padding: `0.5rem 1rem 0.5rem 1rem`}}>
-                                        <button class="menu-button" onClick={this.handleModal}>
-                                            <FontAwesomeIcon icon={faTags} class="menu-icon"/>
+                                        <button class="tags-button" onClick={this.handleModal}>
+                                            <FontAwesomeIcon icon={faTags} class="tags-icon"/>
                                         </button>
                                         <input style={{fontFamily:`Catamaran`}}
                                         {...getInputProps({
@@ -339,6 +343,10 @@ export class MapContainer extends React.Component {
                         <div class = "event-cards">
                             {this.state.filteredEventList.length == 1 ? <p>We found 1 event related to <b>{this.state.filterTags.join(", ")}</b> for you</p> : 
                                 <p>We found {this.state.filteredEventList.length} events related to <b>{this.state.filterTags.join(", ")}</b> for you</p>}
+                                <button class="cancel-button" onClick={this.handleClear}>
+                                    <FontAwesomeIcon icon={faTimesCircle} class="cancel-icon"/>
+                                    <p>Cancel Filter</p>
+                                </button>
                             {this.state.filteredEventList.map((item, i) => {
                                 console.log(item);
                                 return (
