@@ -94,10 +94,13 @@ export const addEventToAccount = async (req,res) => {
   }
   else{
     //Add to events rsvp
-    const update = { $push : {eventsRSVP : req.body.eventID}};
-    doc = await AccountData.findOneAndUpdate(filter, update, {
-      new: true
-    });
+    if (!json(await AccountData.findById(req.body.accountID)).eventsRSVP.includes(req.body.eventID)) {
+      /* vendors contains the element we're looking for */
+      const update = { $push : {eventsRSVP : req.body.eventID}};
+      doc = await AccountData.findOneAndUpdate(filter, update, {
+        new: true
+      });
+    }
   }
   try{
     res.status(210).json(doc);
@@ -113,6 +116,7 @@ export const getOneAccount = async (req,res) => {
   let acc = await AccountData.findById(req.body.id)
     .then(result => {
       if(result){
+        console.log(result);
         console.log("Account exists");
       }
       else{
@@ -121,6 +125,7 @@ export const getOneAccount = async (req,res) => {
       return result;
     })
     .catch(err => console.log({message: error.message}));
+  console.log(acc);
   try{
     res.status(201).json(acc);
   }catch(error){

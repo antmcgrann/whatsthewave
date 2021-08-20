@@ -59,7 +59,10 @@ export default class EventManagement extends React.Component {
     getUsersEvents = async () => {
         let acc = await axios.post('/accounts/getOneAccount',
         {id:localStorage.getItem("userToken")})
-            .then(response => this.setState({account: response.data}));
+            .then(response => {
+                this.setState({account: response.data});
+                return response;
+            });
         //Now read response.data.eventsHosted & eventsRSVP and retrieve the data
         //getOneEvent
         let eventsHosted = acc.data.eventsHosted,
