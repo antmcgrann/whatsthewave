@@ -3,7 +3,7 @@
 import express from 'express'
 
 //Import controller functions for router
-import { getEvents, createEvent, getOneEvent, editEvent, getEventUnique, rsvpEvent } from '../controllers/events.js'
+import { getEvents, createEvent, getOneEvent, editEvent, getEventUnique, rsvpEvent} from '../controllers/events.js'
 const eventRoutes = express.Router()
 
 // http://localhost:5000
@@ -17,7 +17,7 @@ eventRoutes.get('/getEvents', getEvents);
 // Only needs a valid req of a event object
 eventRoutes.post('/createEvent', createEvent);
 
-eventRoutes.get('/getOneEvent', getOneEvent);
+eventRoutes.post('/getOneEvent', getOneEvent);
 
 eventRoutes.post('/editEvent', editEvent);
 

@@ -75,7 +75,8 @@ export default class EventManagement extends React.Component {
             axios.post('/events/getOneEvent',{id:e})
                 .then(response => this.state.upcomingEvents.push(response.data));
         });
-        console.log(this.state.account);
+        console.log(this.state.createEvents);
+        console.log(this.state.upcomingEvents);
 
     }
 
