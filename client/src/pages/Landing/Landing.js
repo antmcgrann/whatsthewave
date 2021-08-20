@@ -54,7 +54,7 @@ export class MapContainer extends React.Component {
                 lng: -73.6918
             },
             modalOpen: false,
-            filterTags: []
+            filterTags: [],
         };
 
         this.handleModal = this.handleModal.bind(this);

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './SignUp.scss';
-import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Button, Checkbox, Form, Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 
@@ -85,25 +85,22 @@ export class SignUp extends React.Component {
         console.log("isDesktop" + isDesktop);
 
         return (
-            <div class="signup-container">
-                <div class="signup-left"></div>
-                <div class="signup-right">
-                    <div class="signup-right-container">
+            <div class="signup">
+                <div class="signup-card">
+                    <div class="signup-card-container">
                         <h1 class="signup-title">Sign Up</h1>
                         <h3 class="signup-slogan">Find Your Wave</h3>
 
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Field>
-                                <label>Username</label>
-                                <input placeholder='Username' onChange={this.handleUsernameChange}/>
-                            </Form.Field>
                             <Form.Group widths='equal'>
-                                <Form.Input fluid label='First Name' placeholder='First Name' onChange={this.handleFirstNameChange}/>
-                                <Form.Input fluid label='Last Name' placeholder='Last Name' onChange={this.handleLastNameChange} />
+                                <Form.Input icon="edit" iconPosition="left" fluid placeholder='First Name' onChange={this.handleFirstNameChange}/>
+                                <Form.Input icon="edit" iconPosition="left" fluid placeholder='Last Name' onChange={this.handleLastNameChange} />
                             </Form.Group>
                             <Form.Field>
-                                <label>Password</label>
-                                <input type='password' placeholder='Password' onChange={this.handlePasswordChange} />
+                                <Input icon='user' iconPosition='left' placeholder='Username' onChange={this.handleUsernameChange}/>
+                            </Form.Field>
+                            <Form.Field>
+                                <Input icon='key' iconPosition='left' type='password' placeholder='Password' onChange={this.handlePasswordChange} />
                             </Form.Field>
                             <Button type='submit'><a href="/event-management"  class="signup-btn">Sign Up</a></Button>
                         </Form>

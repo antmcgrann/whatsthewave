@@ -12,7 +12,7 @@ export default class Hero2 extends React.Component {
             <div class="hero">
                 <div class="hero-container">
                     <div class="hero-content">
-                        <h1 class="hero-title">Create an Event</h1>
+                        <h1 class="hero-title">{this.props.title}</h1>
                         <h2 class="hero-subtitle">Start Your Wave</h2>
                     </div>
                 </div>

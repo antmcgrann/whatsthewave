@@ -7,7 +7,7 @@ import PlacesAutocomplete ,{
 } from 'react-places-autocomplete';
 //import Autocomplete from "react-google-autocomplete";
 import { withRouter } from 'react-router-dom';
-import "./CreateEvent.scss";
+import "./EditEvent.scss";
 import Hero from '../../components/Hero2/Hero2';
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import { Button, Checkbox, Form, TextArea } from 'semantic-ui-react'
@@ -19,7 +19,7 @@ import 'semantic-ui-css/semantic.min.css'
 //loadScript('https://maps.googleapis.com/maps/api/js?key=process.env.REACT_APP_API_KEY&libraries=places&callback=initMap');
 
 
-export class CreateEvent extends React.Component {
+export class EditEvent extends React.Component {
 
     constructor(props){
         super(props);
@@ -41,7 +41,7 @@ export class CreateEvent extends React.Component {
     }
 
     componentDidMount = () =>{
-      this.props.updateTitle("Create Event");
+      this.props.updateTitle("Edit Event");
     };
 /*
     eventUniqueness = async ({ eventObj }) => {
@@ -106,16 +106,18 @@ export class CreateEvent extends React.Component {
       }
       //Need validity check
       //Need uniqueness check
+      /*
       await axios.post('/events/createEvent', eventDataPkg)
         .then(response => console.log(response));
       this.props.history.push('/');
+      */
     };
 
     render() {
       // Need UI
         return (
           <div>
-            <Hero title="Create An Event"/>
+            <Hero title="Edit An Event"/>
             <div class="eventform">
             <Form onSubmit={this.handleSubmit}>
                 <h1 class="eventform-title">Event Information</h1>
@@ -193,7 +195,7 @@ export class CreateEvent extends React.Component {
                     </PlacesAutocomplete>
                   </Form.Field>
                 
-                <Button type='submit'>Create Event</Button>
+                <Button type='submit'>Update Event</Button>
             </Form>
           </div>
         </div>
@@ -205,4 +207,4 @@ export class CreateEvent extends React.Component {
 
 export default withRouter(GoogleApiWrapper({
   apiKey: process.env.REACT_APP_API_KEY
-}) (CreateEvent));
+}) (EditEvent));

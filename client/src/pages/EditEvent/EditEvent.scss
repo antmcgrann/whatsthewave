@@ -1,0 +1,40 @@
+/* Create three equal columns that floats next to each other */
+
+.eventform {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    margin: 0 auto;
+    text-align: left;
+  
+    .ui.form {
+      padding: 5rem 0;
+    }
+  
+    .ui.form .field label { 
+      color: var(--theme-color);
+      font-size: var(--big-font-size);
+      font-weight: 500;
+    }
+    
+    .ui.button {
+        background-color: #50A1A6;
+        color: var(--body-color);
+        border-radius: 1rem;
+        padding: 1rem 3rem;
+    }
+  }
+  
+  .eventform-title {
+    color: var(--theme-color);
+    padding-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }

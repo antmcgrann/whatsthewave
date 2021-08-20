@@ -3,10 +3,11 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Header from './components/Header/Header';
 import Landing from './pages/Landing/Landing';
-import CreateEvent from './pages/CreateEvent/CreateEvent'
-import EventManagement from './pages/EventManagement/EventManagement'
+import CreateEvent from './pages/CreateEvent/CreateEvent';
+import EventManagement from './pages/EventManagement/EventManagement';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
+import EditEvent from './pages/EditEvent/EditEvent';
 
 import './styles/main.scss';
 
@@ -40,6 +41,9 @@ export default class App extends React.Component {
                     </Route>
                     <Route exact path="/event-management/create">
                         <CreateEvent updateTitle={this.updateTitle}/>
+                    </Route>
+                    <Route exact path="/event-management/edit">
+                        <EditEvent updateTitle={this.updateTitle}/>
                     </Route>
                 </Switch>
             </BrowserRouter>
