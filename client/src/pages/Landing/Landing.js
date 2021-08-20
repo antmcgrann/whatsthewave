@@ -90,6 +90,7 @@ export class MapContainer extends React.Component {
                     creator: String(element.creator),
                     tags: [element.tags],
                     rsvp: [element.rsvp],
+                    rsvpLength: element.rsvp.length,
                     dateField: String(element.dateField),
                     addressField: String(element.addressField),
                     contactInfoField: String(element.contactInfoField),
@@ -268,7 +269,7 @@ export class MapContainer extends React.Component {
                                                         <b>Contact: </b> {item.contactInfoField}<br/>
                                                     </Typography>
                                                     <Typography variant = "p">
-                                                        <b>Attending: </b> {item.rsvp.length} <br/>
+                                                        <b>Attending: </b> {item.rsvpLength} <br/>
                                                     </Typography>
                                                 </div>
                                                 <Button type='RSVP' value={item.id} onClick={this.handleRSVP}>RSVP</Button>
@@ -407,6 +408,9 @@ export class MapContainer extends React.Component {
                                                     </Typography>
                                                     <Typography variant = "p">
                                                         <b>Contact: </b> {item.contactInfoField}<br/>
+                                                    </Typography>
+                                                    <Typography variant = "p">
+                                                        <b>Attending: </b> {item.rsvpLength} <br/>
                                                     </Typography>
                                                 </div>
                                             </CardContent>
