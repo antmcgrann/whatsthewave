@@ -27,11 +27,6 @@
     &-no-acct, &-no-acct:hover {
         color: var(--theme-color);
     }
-    
-    &-container {
-        display: flex;
-        flex-direction: row;
-    }
 
     &-title {
         font-size: var(--biggest-font-size);

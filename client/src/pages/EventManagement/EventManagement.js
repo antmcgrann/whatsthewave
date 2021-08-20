@@ -24,7 +24,7 @@ const eventData = [
                 </Card.Content>
                 <Card.Content extra>
                     <div className='ui two buttons'>
-                    <Button basic color='blue'>Manage</Button>
+                    <a href="/event-management/edit"><Button basic color='blue'>Manage</Button></a>
                     </div>
                 </Card.Content>
             </Card>
