@@ -72,7 +72,7 @@ export default class EventManagement extends React.Component {
     //This is my attempt but it doesn't work
     createEventCards = () => {
         this.setState({createCards : [
-            this.createdEvents.map((item, i) => {
+            this.state.createdEvents.map((item, i) => {
                 return (
                     <Card>
                         <Card.Content>
