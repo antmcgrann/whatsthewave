@@ -16,7 +16,7 @@ import './Landing.scss';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Button, Header, Icon, Input } from 'semantic-ui-react';
+import { Button, Header, Icon, Input, Item } from 'semantic-ui-react';
 import Modal from '../../components/Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTags, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -63,6 +63,11 @@ export class MapContainer extends React.Component {
     componentDidMount() {
         this.props.updateTitle("Landing");
         this.refreshSavedEvents();
+        /*
+        if(!localStorage.getItem('userToken')){
+            localStorage.setItem('userToken', JSON.stringify($scope.in));
+        }
+        */
     }
 
     //Upon component remounting, recieve all events from backend
@@ -70,14 +75,13 @@ export class MapContainer extends React.Component {
         await axios.get("/events/getEvents")
         .then(res => {
             console.log(res.data);
-            localStorage.clear();
             //Save to local storage, res.data is array of event json objects
             //Stored in key-value pair
             //Need to have id_key made in backend
             let tempArr = [];
             res.data.forEach(element => {
                 let tempObj = {
-                    key: parseInt(element.key),
+                    id: String(element._id),
                     title: String(element.title),
                     latLng: element.latLng,
                     lat: Number(element.latLng.lat),
@@ -154,6 +158,25 @@ export class MapContainer extends React.Component {
             })
             .catch(error => console.error('Error', error));
     };
+
+    handleRSVP = async e => {
+        console.log(String(e.target.value));
+        //check if logged in first
+        if(localStorage.getItem("userToken") != null){
+            let rsvpPkg = {
+                accountID : localStorage.getItem("userToken"),
+                eventID : e.target.value,
+                //false says its a rsvp
+                created : false
+            }
+            await axios.post('/accounts/addEventToAccount',rsvpPkg)
+                .then(response => console.log(response));
+        }
+        else{
+            //redirect to login
+            window.location.href = '/login';
+        }
+    }
 
     render() {
         if (this.state.filterTags.length === 0){
@@ -241,6 +264,7 @@ export class MapContainer extends React.Component {
                                                         <b>Contact: </b> {item.contactInfoField}<br/>
                                                     </Typography>
                                                 </div>
+                                                <Button type='RSVP' value={item.id} onClick={this.handleRSVP}>RSVP</Button>
                                             </CardContent>
                                         </Card>
                                     </div>

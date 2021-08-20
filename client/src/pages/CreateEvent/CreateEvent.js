@@ -42,6 +42,9 @@ export class CreateEvent extends React.Component {
 
     componentDidMount = () =>{
       this.props.updateTitle("Create Event");
+      if(localStorage.getItem("userToken") == null){
+        window.location.href = '/login';
+      }
     };
 /*
     eventUniqueness = async ({ eventObj }) => {
@@ -88,7 +91,7 @@ export class CreateEvent extends React.Component {
     handleSubmit = async data => {
       data.preventDefault();
       //Prob want to check each field for validity
-      if(this.state.address === ''){
+      if(this.state.address === '' ){
         return;
       }
       console.log("check " + data.target.tags.value);
@@ -104,9 +107,18 @@ export class CreateEvent extends React.Component {
         latLng: this.state.coords,
         addressField: this.state.address
       }
-      //Need validity check
-      //Need uniqueness check
+      //After creation need to add to account
+      let eventID = '';
       await axios.post('/events/createEvent', eventDataPkg)
+        .then(response => eventID = response.data._id);
+      //Call post to account
+      let addPkg = {
+        eventID : eventID,
+        // true for event created, false for rsvp
+        created : true,
+        accountID : localStorage.getItem("userToken")
+      }
+      await axios.post('/accounts/addEventToAccount', addPkg)
         .then(response => console.log(response));
       window.location.href = '/';
     };

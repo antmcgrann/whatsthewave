@@ -83,7 +83,31 @@ export const logInAccount = async (req,res) => {
 //Add event id to account
 //Req should say whether it is the creator or rsvp
 export const addEventToAccount = async (req,res) => {
-
+  const filter = {_id: req.body.accountID};
+  let doc = {};
+  if(req.body.created){
+    //Add to events created
+    const update = { $push : {eventsHosted : req.body.eventID}};
+    doc = await AccountData.findOneAndUpdate(filter, update, {
+      new: true
+    });
+  }
+  else{
+    //Add to events rsvp
+    //Quick break to not dup
+    
+    const update = { $push : {eventsRSVP : req.body.eventID}};
+    doc = await AccountData.findOneAndUpdate(filter, update, {
+      new: true
+    });
+    
+  
+  }
+  try{
+    res.status(210).json(doc);
+  }catch(error){
+    res.status(410).json({ error : error.message});
+  }
 }
 
 //Send account id, get all accounts details

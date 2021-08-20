@@ -74,7 +74,7 @@ export class LogIn extends React.Component {
             //log in success
             console.log("Log in success");
             console.log(responsePkg.accID);
-            localStorage.setItem("userToken",responsePkg.accID);
+            window.localStorage.setItem("userToken",responsePkg.accID);
             //Just in case its true
             this.setState({logInFail : false});
             //Use this for redirecting within components, because it doesnt clear the localstorage
