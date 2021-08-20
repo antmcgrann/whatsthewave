@@ -44,8 +44,8 @@ export default class EventManagement extends React.Component {
             createEvents : [{}],
             upcomingEvents : [{}],
             // Store the rendered cards here
-            createCards : [{}],
-            upcomingCards : [{}]
+            createCards : [],
+            upcomingCards : []
         }
     }
 
@@ -77,7 +77,9 @@ export default class EventManagement extends React.Component {
         });
         console.log(this.state.createEvents);
         console.log(this.state.upcomingEvents);
-
+        this.createEventCards();
+        console.log(this.state.createCards);
+        console.log(this.state.upcomingCards);
     }
 
     handleEventEdit = async () => {
@@ -93,10 +95,10 @@ export default class EventManagement extends React.Component {
                     return (
                         <Card>
                             <Card.Content>
-                                <Card.Header>{item.name}</Card.Header>
-                                <Card.Meta>{item.type}</Card.Meta>
-                                <Card.Description>{item.location}</Card.Description>
-                                <Card.Description>{item.date}</Card.Description>
+                                <Card.Header>{item.title}</Card.Header>
+                                <Card.Meta>{item.descField}</Card.Meta>
+                                <Card.Description>{item.address}</Card.Description>
+                                <Card.Description>{item.dateField}</Card.Description>
                             </Card.Content>
                             <Card.Content extra>
                                 <div className='ui two buttons'>
@@ -112,10 +114,10 @@ export default class EventManagement extends React.Component {
                 return (
                     <Card>
                         <Card.Content>
-                            <Card.Header>{item.name}</Card.Header>
-                            <Card.Meta>{item.type}</Card.Meta>
-                            <Card.Description>{item.location}</Card.Description>
-                            <Card.Description>{item.date}</Card.Description>
+                            <Card.Header>{item.title}</Card.Header>
+                            <Card.Meta>{item.descField}</Card.Meta>
+                            <Card.Description>{item.address}</Card.Description>
+                            <Card.Description>{item.dateField}</Card.Description>
                         </Card.Content>
                         <Card.Content extra>
                             <div className='ui two buttons'>
@@ -137,16 +139,16 @@ export default class EventManagement extends React.Component {
             <div>
                 <Hero/>
                 <div class="usr-info">
-                <div class="usr-evts" style={{ height: this.createCards === [{}] ? `300px` : ``}}>
+                <div class="usr-evts" style={{ height: this.state.createCards === [{}] ? `300px` : ``}}>
                     <h2>My Created Events</h2>
                     <Card.Group>
-                        {this.createCards != [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
+                        {this.state.createCards != [{}] ? this.state.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
                     </Card.Group>
                 </div>
-                <div class="usr-evts" style={{ height: this.createCards === [{}] ? `300px` : ``}}>
+                <div class="usr-evts" style={{ height: this.state.upcomingCards === [{}] ? `300px` : ``}}>
                     <h2>Upcoming Events</h2>
                     <Card.Group>
-                        {this.upcomingCards != [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
+                        {this.state.upcomingCards != [{}] ? this.state.upcomingCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
                     </Card.Group>
                 </div>
                 </div>
