@@ -108,7 +108,7 @@ export class CreateEvent extends React.Component {
       //Need uniqueness check
       await axios.post('/events/createEvent', eventDataPkg)
         .then(response => console.log(response));
-      this.props.history.push('/');
+      window.location.href = '/';
     };
 
     render() {

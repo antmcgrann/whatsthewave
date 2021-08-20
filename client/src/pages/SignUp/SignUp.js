@@ -13,7 +13,10 @@ export class SignUp extends React.Component {
             password: '',
             isDesktop: false,
             firstName: '',
-            lastName: ''
+            lastName: '',
+            // Update on non unique username
+            // Only should fail if username not unique
+            createFail: false
         };
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -67,17 +70,23 @@ export class SignUp extends React.Component {
         .then(response =>  uniqueUser = response.data);
       if(!uniqueUser){
         console.log("This username is not unique");
+        this.setState({createFail : true});
         return;
       }
+      //Just to make its false if it passes
+      this.setState({createFail : false});
       let accountDataPkg = {
         username: this.state.username,
         password: this.state.password,
         firstName: this.state.firstName,
         lastName: this.state.lastName
       }
+      let newAccID = '';
       console.log("acct pkg " + JSON.stringify(accountDataPkg));
       await axios.post('/accounts/createAccount',accountDataPkg)
-        .then(response => console.log(response));
+        .then(response => newAccID = response.data._id);
+        localStorage.setItem("userToken", newAccID);
+        window.location.href = '/';
     }
    
     render() {
@@ -90,7 +99,11 @@ export class SignUp extends React.Component {
                     <div class="signup-card-container">
                         <h1 class="signup-title">Sign Up</h1>
                         <h3 class="signup-slogan">Find Your Wave</h3>
-
+                        {this.state.createFail == true &&
+                        <h4>
+                        Account Creation Failed, Username Exists
+                        </h4>
+                        }
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group widths='equal'>
                                 <Form.Input icon="edit" iconPosition="left" fluid placeholder='First Name' onChange={this.handleFirstNameChange}/>

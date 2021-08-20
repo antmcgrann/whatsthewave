@@ -37,15 +37,13 @@ export default class EventManagement extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            // This stores all account data
             account : {},
-            createdEvents : [{name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"}],
-            upcomingEvents : [{name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"},
-            {name: "Farmer's Market", type: "Food & Recreation", location: "Troy, NY", date: "September 14, 2021"}],
+            // @justin so these are storing the events
+            //I'm not sure how to render it into cards
+            createEvents : [{}],
+            upcomingEvents : [{}],
+            // Store the rendered cards here
             createCards : [{}],
             upcomingCards : [{}]
         }
@@ -66,6 +64,12 @@ export default class EventManagement extends React.Component {
         console.log(this.state.account);
     }
 
+    handleEventEdit = async () => {
+        // On edit button click get event data and store on localstorage
+        // Then the data can populate the fields in the edit page
+    }
+
+    //This is my attempt but it doesn't work
     createEventCards = () => {
         this.setState({createCards : [
             this.createdEvents.map((item, i) => {
@@ -112,6 +116,7 @@ export default class EventManagement extends React.Component {
     render() {
         
         return (
+            // I put in createCards & upcomingCards into where the mock objects used to be
             <div>
                 <Hero/>
                 <div class="usr-info">

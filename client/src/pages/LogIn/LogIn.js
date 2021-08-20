@@ -3,14 +3,18 @@ import React from 'react';
 import './LogIn.scss';
 import { Button, Checkbox, Form, Input } from 'semantic-ui-react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class LogIn extends React.Component {
+
+export class LogIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
             username: '',
             password: '',
-            isDesktop: false
+            isDesktop: false,
+            // Use this to notify user of login fail, in ui
+            logInFail: false
         };
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -61,6 +65,7 @@ export default class LogIn extends React.Component {
             //User does not exist
             //Add some front end changes to notify user
             console.log("bad user");
+            this.setState({logInFail : true});
             return;
         }
         console.log(responsePkg);
@@ -70,9 +75,14 @@ export default class LogIn extends React.Component {
             console.log("Log in success");
             console.log(responsePkg.accID);
             localStorage.setItem("userToken",responsePkg.accID);
+            //Just in case its true
+            this.setState({logInFail : false});
+            //Use this for redirecting within components, because it doesnt clear the localstorage
+            window.location.href = '/';
         }
         else{
             console.log("Bad pass");
+            this.setState({logInFail : true});
         }
     }
    
@@ -86,7 +96,11 @@ export default class LogIn extends React.Component {
                     <div class="login-card-container">
                         <h1 class="login-title">Log In</h1>
                         <h3 class="login-slogan">Find Your Wave</h3>
-
+                        {this.state.logInFail == true &&
+                        <h4>
+                        Log In failed, bad username or password
+                        </h4>
+                        }
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Field>
                                 <Input icon="user" iconPosition="left" placeholder='Username' onChange={this.handleUsernameChange}/>
@@ -103,3 +117,5 @@ export default class LogIn extends React.Component {
         )
     }
 }
+
+export default withRouter(LogIn);
