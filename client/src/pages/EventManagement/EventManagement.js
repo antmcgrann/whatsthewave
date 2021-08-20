@@ -71,27 +71,27 @@ export default class EventManagement extends React.Component {
 
     //This is my attempt but it doesn't work
     createEventCards = () => {
-        this.setState({createCards : [
-            this.state.createdEvents.map((item, i) => {
-                return (
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>{item.name}</Card.Header>
-                            <Card.Meta>{item.type}</Card.Meta>
-                            <Card.Description>{item.location}</Card.Description>
-                            <Card.Description>{item.date}</Card.Description>
-                        </Card.Content>
-                        <Card.Content extra>
-                            <div className='ui two buttons'>
-                            <a href="/event-management/edit"><Button basic color='blue'>Manage</Button></a>
-                            </div>
-                        </Card.Content>
-                    </Card>
-                );
-            })
-        ]});
+            this.setState({createCards : [
+                this.state.createEvents.map((item, i) => {
+                    return (
+                        <Card>
+                            <Card.Content>
+                                <Card.Header>{item.name}</Card.Header>
+                                <Card.Meta>{item.type}</Card.Meta>
+                                <Card.Description>{item.location}</Card.Description>
+                                <Card.Description>{item.date}</Card.Description>
+                            </Card.Content>
+                            <Card.Content extra>
+                                <div className='ui two buttons'>
+                                <a href="/event-management/edit"><Button basic color='blue'>Manage</Button></a>
+                                </div>
+                            </Card.Content>
+                        </Card>
+                    );
+                })
+            ]});
         this.setState({upcomingCards : [
-            this.upcomingEvents.map((item, i) => {
+            this.state.upcomingEvents.map((item, i) => {
                 return (
                     <Card>
                         <Card.Content>
