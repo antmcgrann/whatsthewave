@@ -9,7 +9,7 @@ import React from 'react';
 
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import { saveEventData } from '../../actions';
+import { saveEventData } from '../../Actions';
 import axios from 'axios';
 
 import './Landing.scss';
@@ -457,5 +457,5 @@ export class MapContainer extends React.Component {
 
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyA5Fy82euqI3qx3rPisgCB0V-bxhqs_sZw'
+    apiKey: process.env.REACT_APP_API_KEY
 })(MapContainer);
