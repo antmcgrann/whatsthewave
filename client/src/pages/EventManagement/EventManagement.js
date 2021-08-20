@@ -59,14 +59,27 @@ export default class EventManagement extends React.Component {
     getUsersEvents = async () => {
         let acc = await axios.post('/accounts/getOneAccount',
         {id:localStorage.getItem("userToken")})
-            .then(response => this.setState({account: response.data,
-             createdEvents : response.data.eventsHosted, upcomingEvents : response.data.eventsRSVP}));
+            .then(response => this.setState({account: response.data}));
+        //Now read response.data.eventsHosted & eventsRSVP and retrieve the data
+        //getOneEvent
+        let eventsHosted = acc.data.eventsHosted,
+        eventsRSVP = acc.data.eventsRSVP;
+        eventsHosted.forEach(e => {
+            axios.post('/events/getOneEvent',{id:e})
+                .then(response => this.state.createEvents.push(response.data));
+        });
+        eventsRSVP.forEach(e => {
+            axios.post('/events/getOneEvent',{id:e})
+                .then(response => this.state.upcomingEvents.push(response.data));
+        });
         console.log(this.state.account);
+
     }
 
     handleEventEdit = async () => {
         // On edit button click get event data and store on localstorage
         // Then the data can populate the fields in the edit page
+
     }
 
     //This is my attempt but it doesn't work

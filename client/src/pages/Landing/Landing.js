@@ -171,6 +171,10 @@ export class MapContainer extends React.Component {
             }
             await axios.post('/accounts/addEventToAccount',rsvpPkg)
                 .then(response => console.log(response));
+            //Now add acount to event
+            await axios.post('/events/rsvpEvent',rsvpPkg)
+                .then(response => console.log(response));
+            
         }
         else{
             //redirect to login
@@ -262,6 +266,9 @@ export class MapContainer extends React.Component {
                                                     </Typography>
                                                     <Typography variant = "p">
                                                         <b>Contact: </b> {item.contactInfoField}<br/>
+                                                    </Typography>
+                                                    <Typography variant = "p">
+                                                        <b>Attending: </b> {item.rsvp.length} <br/>
                                                     </Typography>
                                                 </div>
                                                 <Button type='RSVP' value={item.id} onClick={this.handleRSVP}>RSVP</Button>

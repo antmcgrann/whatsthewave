@@ -38,7 +38,12 @@ export const createEvent = async (req, res) => {
 }
 
 export const getOneEvent = async (req,res) => {
-
+  let event = await EventData.findById(req.body.id);
+  try {
+    res.status(211).json(event);
+  }catch(error){
+    res.status(411).json({ message: error.message});
+  }
 
 }
 
@@ -47,6 +52,7 @@ export const editEvent = async (req,res) => {
 }
 
 //WIP
+//Not using this
 export const getEventUnique = async (req,res) => {
   let event = req.body,
   tempBool = true,
@@ -72,18 +78,18 @@ export const getEventUnique = async (req,res) => {
 //WIP
 //Store account id in list
 //Req should have event id, and account id
-//Needs testing
+//Needs testing, but should work
 export const rsvpEvent = async (req,res) => {
-  const request = req.body;
-  const filter = { _id: request.event_id };
-  const update = { rsvp: request.acccount_id }; 
+  const filter = { _id: req.body.eventID };
+  const update = { $push : {rsvp: req.body.accountID }}; 
+  console.log(req.body.acccountID);
   let doc = await EventData.findOneAndUpdate(filter, update, {
     new: true
   });
   try{
-    res.status(203);
+    res.status(203).json(doc);
   }catch(error){
-    res.status(410);
+    res.status(410).json({error: error.message});
   }
   
 

@@ -94,14 +94,10 @@ export const addEventToAccount = async (req,res) => {
   }
   else{
     //Add to events rsvp
-    //Quick break to not dup
-    
     const update = { $push : {eventsRSVP : req.body.eventID}};
     doc = await AccountData.findOneAndUpdate(filter, update, {
       new: true
     });
-    
-  
   }
   try{
     res.status(210).json(doc);
