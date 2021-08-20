@@ -6,6 +6,6 @@ accountRoutes.get('/getAccounts', getAccounts);
 accountRoutes.post('/createAccount', createAccount);
 accountRoutes.post('/checkUser', checkUser);
 accountRoutes.post('/logInAccount', logInAccount);
-accountRoutes.get('/getOneAccount', getOneAccount);
+accountRoutes.post('/getOneAccount', getOneAccount);
 
 export default accountRoutes;

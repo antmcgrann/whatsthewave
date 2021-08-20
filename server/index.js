@@ -7,7 +7,7 @@ import eventRoutes from './routes/events.js';
 import accountRoutes from './routes/account.js';
 
 const app = express();
-const path = require('path');
+//const path = require('path');
 
 app.use(express.json({ limit: "30mb", extended: true}));
 app.use(express.urlencoded({ limit: "30mb", extended: true}));

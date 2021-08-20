@@ -8,6 +8,8 @@ import EventManagement from './pages/EventManagement/EventManagement';
 import LogIn from './pages/LogIn/LogIn';
 import SignUp from './pages/SignUp/SignUp';
 import EditEvent from './pages/EditEvent/EditEvent';
+import AccountInfo from './pages/AccountInfo';
+
 
 import './styles/main.scss';
 
@@ -44,6 +46,9 @@ export default class App extends React.Component {
                     </Route>
                     <Route exact path="/event-management/edit">
                         <EditEvent updateTitle={this.updateTitle}/>
+                    </Route>
+                    <Route exact path="/account-info">
+                        <AccountInfo updateTitle={this.updateTitle}/>
                     </Route>
                 </Switch>
             </BrowserRouter>

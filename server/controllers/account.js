@@ -10,6 +10,7 @@ export const getAccounts = async (  req, res  ) => {
   }
 }
 
+//Working
 export const createAccount = async (req, res) => {
     const newAccount = new AccountData(req.body);
     try  {
@@ -38,6 +39,7 @@ export const checkUser = async (req,res) => {
   }
 }
 
+//Working
 export const logInAccount = async (req,res) => {
   let user = req.body.user,
   pass = req.body.pass,
@@ -68,7 +70,8 @@ export const logInAccount = async (req,res) => {
   }
   let responsePkg = {
     userValid: userExists,
-    passValid: passCorrect
+    passValid: passCorrect,
+    accID: acc._id
   }
   try{
     res.status(202).json(responsePkg);
@@ -82,8 +85,11 @@ export const logInAccount = async (req,res) => {
 export const addEventToAccount = async (req,res) => {
 
 }
+
 //Send account id, get all accounts details
+//Working
 export const getOneAccount = async (req,res) => {
+  console.log(req.body.id);
   let acc = await AccountData.findById(req.body.id)
     .then(result => {
       if(result){
@@ -92,6 +98,7 @@ export const getOneAccount = async (req,res) => {
       else{
         console.log("Account does not exist");
       }
+      return result;
     })
     .catch(err => console.log({message: error.message}));
   try{

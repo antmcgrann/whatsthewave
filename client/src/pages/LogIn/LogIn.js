@@ -68,6 +68,8 @@ export default class LogIn extends React.Component {
         if(responsePkg.passValid === true){
             //log in success
             console.log("Log in success");
+            console.log(responsePkg.accID);
+            localStorage.setItem("userToken",responsePkg.accID);
         }
         else{
             console.log("Bad pass");
