@@ -137,16 +137,16 @@ export default class EventManagement extends React.Component {
             <div>
                 <Hero/>
                 <div class="usr-info">
-                <div class="usr-evts" style={{ height: this.createCards === [{}] ? `300px` : ``}}>
+                <div class="usr-evts" style={{ height: this.createCards != [{}] ? `300px` : ``}}>
                     <h2>My Created Events</h2>
                     <Card.Group>
-                        {this.createCards != [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
+                        {this.createCards === [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
                     </Card.Group>
                 </div>
-                <div class="usr-evts" style={{ height: this.createCards === [{}] ? `300px` : ``}}>
+                <div class="usr-evts" style={{ height: this.createCards != [{}] ? `300px` : ``}}>
                     <h2>Upcoming Events</h2>
                     <Card.Group>
-                        {this.upcomingCards != [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
+                        {this.upcomingCards === [{}] ? this.createCards : (<span style={{fontWeight:`100`}}>No events to display ;(</span>)}
                     </Card.Group>
                 </div>
                 </div>
