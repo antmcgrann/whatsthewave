@@ -58,6 +58,8 @@ Trouble Shooting:
 
 A common issue is the having the google maps API up and running. For issues displaying the maps properly using an API key refer to: https://dev.to/thepuskar/how-to-hide-your-api-keys-in-react-4k55
 
+Another debugger tip is to run npm install start
+
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push 
