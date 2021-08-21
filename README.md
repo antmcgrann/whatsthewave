@@ -18,6 +18,37 @@ These instructions will give you a copy of the project up and running on
 your local machine for development and testing purposes. See deployment
 for notes on deploying the project on a live system.
 
+Running Whats the Wave:
+
+1. Open up GitHub desktop (or other environment to run javascript)
+
+2. Open up two terminal windows
+
+3. Set one terminal path to the client folder
+
+4. Set other terminal path to the server folder
+
+5. In the client terminal enter npm install (install all the necessary dependencies)
+
+6. In the server terminal enter npm install (install all the necessary dependencies)
+
+7. In the server terminal enter npm start (should similary to the lines below)
+
+    > server@1.0.0 start C:\<your path>\server
+    > nodemon index.js
+    
+    [nodemon] 2.0.12
+    [nodemon] to restart at any time, enter 'rs'
+    [nodemon] watching path(s): *.*
+    [nodemon] watching extensions: js,mjs,json
+    [nodemon] starting 'node index.js'
+    Server running on port: 5000
+ 
+8. In the client terminal enter npm start (should route to the website homepage on http://localhost:3000/
+
+
+Trouble Shooting:
+
 ### Prerequisites
 
 Requirements for the software and other tools to build, test and push 
