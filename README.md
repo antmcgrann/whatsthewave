@@ -56,7 +56,7 @@ Running Whats the Wave:
 
 Trouble Shooting:
 
-A common issue is the 
+A common issue is the having the google maps API up and running. For issues displaying the maps properly refer to: https://dev.to/thepuskar/how-to-hide-your-api-keys-in-react-4k55
 
 ### Prerequisites
 
