@@ -32,7 +32,7 @@ Running Whats the Wave:
 
 6. In the server terminal enter npm install (install all the necessary dependencies)
 
-7. In the server terminal enter npm start (should similary to the lines below)
+7. In the server terminal enter npm start (terminal should display similary to the lines below)
 
                 server@1.0.0 start C:\<your path>\server
 
@@ -55,6 +55,8 @@ Running Whats the Wave:
 
 
 Trouble Shooting:
+
+A common issue is the 
 
 ### Prerequisites
 
