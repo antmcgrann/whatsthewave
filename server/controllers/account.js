@@ -94,13 +94,13 @@ export const addEventToAccount = async (req,res) => {
   }
   else{
     //Add to events rsvp
-    if (!json(await AccountData.findById(req.body.accountID)).eventsRSVP.includes(req.body.eventID)) {
+    //if (!json(await AccountData.findById(req.body.accountID)).eventsRSVP.includes(req.body.eventID)) {
       /* vendors contains the element we're looking for */
-      const update = { $push : {eventsRSVP : req.body.eventID}};
-      doc = await AccountData.findOneAndUpdate(filter, update, {
-        new: true
-      });
-    }
+    const update = { $push : {eventsRSVP : req.body.eventID}};
+    doc = await AccountData.findOneAndUpdate(filter, update, {
+      new: true
+    });
+    //}
   }
   try{
     res.status(210).json(doc);
