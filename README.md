@@ -34,15 +34,22 @@ Running Whats the Wave:
 
 7. In the server terminal enter npm start (should similary to the lines below)
 
-> server@1.0.0 start C:\<your path>\server\n
-> nodemon index.js\n
-    
-[nodemon] 2.0.12\n
-[nodemon] to restart at any time, enter 'rs'\n
-[nodemon] watching path(s): *.*\n
-[nodemon] watching extensions: js,mjs,json\n
-[nodemon] starting 'node index.js'\n
-Server running on port: 5000\n
+server@1.0.0 start C:\<your path>\server
+
+nodemon index.js
+     
+     
+[nodemon] 2.0.12
+
+[nodemon] to restart at any time, enter 'rs'
+
+[nodemon] watching path(s): *.*
+
+[nodemon] watching extensions: js,mjs,json
+
+[nodemon] starting 'node index.js'
+
+Server running on port: 5000
  
 8. In the client terminal enter npm start (should route to the website homepage on http://localhost:3000/
 
