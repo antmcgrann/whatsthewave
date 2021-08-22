@@ -16,29 +16,37 @@
     &-icon {
         height: 1rem;
         width: 1rem;
+        margin-right: .5rem;
     }
 
     &-menu {
         display: block;
-        position: absolute;
+        position: fixed;
         top: 55px;
-        right: -10px;
+        right: 10px;
         background: var(--light-text);
         z-index: 100;
-        padding: 0.75rem;
+        padding: .8rem;
         border-radius: .3rem;
-        width: 150px;
+        min-width: 170px;
         box-shadow: 0 1px 10px rgb(132, 145, 163);
     }
 
     &-item {
-        a, a:hover {
-            color: var(--theme-color);
-        }
-
-        a:hover {
-            text-decoration: underline;
-            font-weight: 900;
-        }
+        display: flex;
+        align-items: center;
+        color: var(--theme-color);
+        cursor: pointer;
+        padding: .15rem;
     }
+
+    &-item:hover {
+        color: var(--theme-color);
+        font-weight: 900;
+        text-decoration: underline;
+    }
+}
+
+.dropdown-item .dropdown-icon {
+    color: var(--theme-color);
 }
